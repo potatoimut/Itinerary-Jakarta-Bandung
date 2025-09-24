@@ -1,0 +1,1094 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Backpacker Itinerary - Jakarta Bandung</title>
+    <link rel="icon" href="Untitled design (3).png" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        html {
+        scroll-behavior: smooth;
+        }
+        
+        body {
+            overflow-x: hidden;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+        
+        /* Header dengan Parallax Effect */
+        .header {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url('pexels-ozgomz-840667.jpg');
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* Navbar yang Menyambung ke Header */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            background-color: rgba(0, 0, 0, 0.6);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            transition: background-color 0.3s ease;
+        }
+        
+        .navbar.scrolled {
+            background-color: rgba(0, 0, 0, 0.9);
+            padding: 15px 5%;
+        }
+        
+        .logo {
+        align-items: center;
+         width: auto;
+         height: 40px;
+        display: flex
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin: 0 15px;
+        }
+        
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #4e89e8;
+        }
+        
+        .language-selector {
+            display: flex;
+            align-items: center;
+        }
+        
+        .language-selector button {
+            background: none;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            font-size: 14px;
+            margin-left: 10px;
+            opacity: 0.7;
+            transition: opacity 0.3s;
+            padding: 5px 10px;
+            border-radius: 3px;
+        }
+        
+        .language-selector button.active {
+            opacity: 1;
+            font-weight: 600;
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        .language-selector button:hover {
+            opacity: 1;
+        }
+        
+        /* Hero Section */
+        .hero {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #fff;
+            padding: 0 20px;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+        }
+        
+        .budget-tag {
+            background-color: #63636388;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        
+        .cta-button {
+            padding: 12px 30px;
+            background-color: #4e89e8;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        
+        .cta-button:hover {
+            background-color: #3a70c7;
+            transform: translateY(-3px);
+        }
+        
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70px;
+            height: 4px;
+            background-color: #4e89e8;
+        }
+        
+        .section-title p {
+            color: #777;
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* Backpacker Content */
+        .backpacker-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+        
+        .backpacker-info {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .backpacker-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        
+        .backpacker-info p {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .backpacker-features {
+            margin-bottom: 30px;
+        }
+        
+        .backpacker-features li {
+            margin-bottom: 10px;
+            list-style-type: none;
+            display: flex;
+            align-items: center;
+        }
+        
+        .backpacker-features li i {
+            color: #4e89e8;
+            margin-right: 10px;
+        }
+        
+        .backpacker-image {
+            flex: 1;
+            min-width: 300px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .backpacker-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        /* Itinerary Details */
+        .itinerary-details {
+            background-color: #fff;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-bottom: 60px;
+        }
+        
+        .itinerary-details h3 {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: #333;
+            text-align: center;
+        }
+        
+        .day {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .day:last-child {
+            border-bottom: none;
+        }
+        
+        .day h4 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #4e89e8;
+        }
+        
+        .day ul {
+            padding-left: 20px;
+        }
+        
+        .day li {
+            margin-bottom: 10px;
+            color: #555;
+        }
+        
+        .time-slot {
+            font-weight: 600;
+            color: #4e89e8;
+            margin-right: 5px;
+        }
+        
+        .cost {
+            font-style: italic;
+            color: #777;
+            margin-left: 10px;
+        }
+        
+        /* Budget Section */
+        .budget-section {
+            background-color: #f8f9fa;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .budget-section h3 {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: #333;
+            text-align: center;
+        }
+        
+        .budget-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+        }
+        
+        .budget-table th, .budget-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .budget-table th {
+            background-color: #4e89e8;
+            color: white;
+        }
+        
+        .budget-table tr:hover {
+            background-color: #f1f1f1;
+        }
+        
+        .total-budget {
+            text-align: right;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #4e89e8;
+        }
+        
+        /* Tips Section */
+        .tips-section {
+            margin-top: 60px;
+            background-color: #fff;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .tips-section h3 {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: #333;
+            text-align: center;
+        }
+        
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .tip-card {
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            padding: 25px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .tip-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .tip-card i {
+            font-size: 2.5rem;
+            color: #4e89e8;
+            margin-bottom: 15px;
+        }
+        
+        .tip-card h4 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .tip-card p {
+            color: #555;
+            line-height: 1.6;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            padding: 80px 0;
+            background-color: #4e89e8;
+            color: white;
+            margin-top: 60px;
+        }
+        
+        .cta-section h3 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .cta-section p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        .cta-button-secondary {
+            padding: 12px 30px;
+            background-color: white;
+            color: #4e89e8;
+            border: none;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        
+        .cta-button-secondary:hover {
+            background-color: #f1f1f1;
+            transform: translateY(-3px);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #222;
+            color: #fff;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            padding: 0 20px;
+        }
+        
+        .footer-section {
+            flex: 1;
+            min-width: 300px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-section h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background-color: #4e89e8;
+        }
+        
+        .footer-section p {
+            line-height: 1.6;
+            margin-bottom: 20px;
+            color: #bbb;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #bbb;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: #4e89e8;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-icons a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: #333;
+            border-radius: 50%;
+            color: #fff;
+            text-align: center;
+            line-height: 40px;
+            transition: background-color 0.3s;
+        }
+        
+        .social-icons a:hover {
+            background-color: #4e89e8;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #444;
+            margin-top: 30px;
+            color: #bbb;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 15px 5%;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .footer-section {
+                min-width: 100%;
+            }
+            
+            .itinerary-details, .budget-section, .tips-section {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header dengan Parallax -->
+    <header class="header">
+        <!-- Navbar -->
+        <nav class="navbar">
+            <a href="#beranda">
+         <img class="logo" src="logo_white_text.png" alt="Logo Perusahaan">
+            </a>
+            
+            <ul class="nav-links">
+                <li><a href="Beranda.html" data-lang="home">Beranda</a></li>
+                <li><a href="https://vmt.co.id/#" data-lang="about">Tentang Kami</a></li>
+                <li><a href="#footer" data-lang="contact">Kontak</a></li>
+            </ul>
+            
+            <div class="language-selector">
+                <button id="id-lang" class="active">ID</button>
+                <button id="en-lang">EN</button>
+            </div>
+        </nav>
+        
+        <!-- Hero Section -->
+        <section id="beranda" class="hero">
+            <h1 data-lang="hero-title">Backpacker Jakarta-Bandung 3 Hari</h1>
+            <p data-lang="hero-desc">Petualangan hemat dengan transportasi umum dan penginapan budget, nikmati yang terbaik dari kedua kota</p>
+            <div class="budget-tag" data-lang="budget-tag">Budget: Rp 1.500.000</div>
+            <button class="cta-button" data-lang="cta-button">Lihat Itinerary</button>
+        </section>
+    </header>
+    
+    <!-- Main Content -->
+    <main>
+        <!-- Backpacker Info Section -->
+        <section class="container">
+            <div class="section-title">
+                <h2 data-lang="section-title">Pengalaman Backpacker</h2>
+                <p data-lang="section-desc">Perjalanan hemat dengan transportasi umum, menikmati yang terbaik dari Jakarta dan Bandung dengan budget terbatas</p>
+            </div>
+            
+            <div class="backpacker-content">
+                <div class="backpacker-info">
+                    <h3 data-lang="info-title">Petualangan Backpacker Jakarta-Bandung</h3>
+                    <p data-lang="info-p1">Perjalanan backpacker dari Jakarta ke Bandung menawarkan pengalaman otentik dengan harga terjangkau. Dengan budget 1.5 juta untuk 3 hari, Anda bisa menikmati berbagai destinasi menarik di kedua kota.</p>
+                    <p data-lang="info-p2">Perjalanan ini dirancang khusus untuk backpacker yang ingin menikmati petualangan tanpa harus mengeluarkan biaya besar. Dengan perencanaan yang matang, Anda bisa mendapatkan pengalaman terbaik dengan budget minimal.</p>
+                    
+                    <h4 data-lang="features-title">Keuntungan Backpacker:</h4>
+                    <ul class="backpacker-features">
+                        <li><i class="fas fa-check"></i> <span data-lang="feature-1">Transportasi umum (kereta & ojol)</span></li>
+                        <li><i class="fas fa-check"></i> <span data-lang="feature-2">Penginapan hostel/homestay</span></li>
+                        <li><i class="fas fa-check"></i> <span data-lang="feature-3">Makan di warung lokal</span></li>
+                        <li><i class="fas fa-check"></i> <span data-lang="feature-4">Destinasi gratis/affordable</span></li>
+                        <li><i class="fas fa-check"></i> <span data-lang="feature-5">Fleksibilitas tinggi</span></li>
+                    </ul>
+                </div>
+                
+                <div class="backpacker-image">
+                    <img src="https://images.unsplash.com/photo-1503220317375-aaad61436b1b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Backpacker Journey">
+                </div>
+            </div>
+        </section>
+        
+        <!-- Itinerary Details -->
+        <section class="container">
+            <div class="itinerary-details">
+                <h3 data-lang="itinerary-title">Itinerary 3 Hari Backpacker Jakarta - Bandung</h3>
+                
+                <div class="day">
+                    <h4 data-lang="day1-title">Hari 1: Berangkat ke Bandung</h4>
+                    <ul>
+                        <li><span class="time-slot">06.30</span> - <span data-lang="day1-item1">Berangkat ke stasiun Gambir</span> <span class="cost">(Rp 40.000)</span></li>
+                        <li><span class="time-slot">07.30</span> - <span data-lang="day1-item2">Naik KA Argo Parahyangan (Ekonomi Premium)</span> <span class="cost">(Rp 80.000)</span></li>
+                        <li><span class="time-slot">10.20</span> - <span data-lang="day1-item3">Tiba di Bandung, naik ojol ke hostel</span> <span class="cost">(Rp 15.000)</span></li>
+                        <li><span class="time-slot">11.00</span> - <span data-lang="day1-item4">Makan siang di warteg</span> <span class="cost">(Rp 35.000)</span></li>
+                        <li><span class="time-slot">12.30</span> - <span data-lang="day1-item5">Check-in Hostel (populair Hostel Braga)</span> <span class="cost">(Rp 88.200)</span></li>
+                        <li><span class="time-slot">14.00</span> - <span data-lang="day1-item6">Jalan sore di Jalan Braga</span> <span class="cost">(Rp 25.000)</span></li>
+                        <li><span class="time-slot">16.00</span> - <span data-lang="day1-item7">Main ke Alun-Alun Kota Bandung & Masjid Raya</span> <span class="cost">(Rp 10.000)</span></li>
+                        <li><span class="time-slot">18.30</span> - <span data-lang="day1-item8">Makan Malam di Bakmie Tjokin</span> <span class="cost">(Rp 40.000)</span></li>
+                        <li><span class="time-slot">20.00</span> - <span data-lang="day1-item9">Balik Hostel, istirahat</span> <span class="cost">(Free)</span></li>
+                    </ul>
+                </div>
+                
+                <div class="day">
+                    <h4 data-lang="day2-title">Hari 2: Perjalanan ke Bandung</h4>
+                    <ul>
+                        <li><span class="time-slot">07.00</span> - <span data-lang="day2-item1">Sarapan di Braga</span> <span class="cost">(Rp 20.000)</span></li>
+                        <li><span class="time-slot">08.00</span> - <span data-lang="day2-item2">Naik Ojol Ke Dago</span> <span class="cost">(±Rp 21.000)</span></li>
+                        <li><span class="time-slot">09.00</span> - <span data-lang="day2-item3">Masuk ke Tahura Dago</span> <span class="cost">(Rp 15.000)</span></li>
+                        <li><span class="time-slot">11.00</span> - <span data-lang="day2-item4">Masuk Goa Belanda</span> <span class="cost">(Tour Guide ±Rp 35.000)</span></li>
+                        <li><span class="time-slot">11.30</span> - <span data-lang="day2-item5">Makan Siang di Tahura Dago</span> <span class="cost">(Rp 40.000)</span></li>
+                        <li><span class="time-slot">14.00</span> - <span data-lang="day2-item6">Masuk Goa Jepang</span> <span class="cost">(Tour Guide ±Rp 35.000)</span></li>
+                        <li><span class="time-slot">15.30</span> - <span data-lang="day2-item7">Pulang ke Hostel</span> <span class="cost">(±Rp 21.000)</span></li>
+                        <li><span class="time-slot">18.30</span> - <span data-lang="day2-item8">Makan malam di warteg</span> <span class="cost">(Rp 25.000)</span></li>
+                        <li><span class="time-slot">20.00</span> - <span data-lang="day2-item9">Kembali ke Hostel</span> <span class="cost">(Free)</span></li>
+                    </ul>
+                </div>
+                
+                <div class="day">
+                    <h4 data-lang="day3-title">Hari 3: Alam Bandung & Kembali ke Jakarta</h4>
+                    <ul>
+                        <li><span class="time-slot">07.00</span> - <span data-lang="day3-item1">Sarapan Bubur Ayam</span> <span class="cost">(Rp 15.000)</span></li>
+                        <li><span class="time-slot">08.00</span> - <span data-lang="day3-item2">Pergi ke Kartika Sari pakai Ojol</span> <span class="cost">(15.000)</span></li>
+                        <li><span class="time-slot">08.30</span> - <span data-lang="day3-item3">Belanja Oleh Oleh di Kartika sari</span> <span class="cost">(Rp 100.000)</span></li>
+                        <li><span class="time-slot">10.00</span> - <span data-lang="day3-item4">Balik ke Hostel, Check-out</span> <span class="cost">(Rp 15.000)</span></li>
+                        <li><span class="time-slot">10.30</span> - <span data-lang="day3-item5">Pergi Ke Stasiun Bandung</span> <span class="cost">(Rp 15.000)</span></li>
+                        <li><span class="time-slot">11.30</span> - <span data-lang="day3-item6">Naik KA Argo Parahyangan (Ekonomi Premium)</span> <span class="cost">(Rp 80.000)</span></li>
+                        <li><span class="time-slot">14.30</span> - <span data-lang="day3-item7">Tiba di Jakarta, Pulang Ke Rumah</span> <span class="cost">(Rp 40.000)</span></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Budget Section -->
+        <section class="container">
+            <div class="budget-section">
+                <h3 data-lang="budget-title">Rincian Budget Backpacker Jakarta-Bandung 3 Hari</h3>
+                
+                <table class="budget-table">
+                    <thead>
+                        <tr>
+                            <th data-lang="budget-category">Kategori</th>
+                            <th data-lang="budget-detail">Detail</th>
+                            <th data-lang="budget-cost">Biaya (Rp)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td data-lang="budget-accomodation">Akomodasi</td>
+                            <td data-lang="budget-accomodation-desc">2 malam hostel</td>
+                            <td>176.400</td>
+                        </tr>
+                        <tr>
+                            <td data-lang="budget-transport">Transportasi</td>
+                            <td data-lang="budget-transport-desc">Kereta PP, transportasi lokal</td>
+                            <td>352.000</td>
+                        </tr>
+                        <tr>
+                            <td data-lang="budget-activities">Aktivitas & Entri</td>
+                            <td data-lang="budget-activities-desc">Tiket wisata dan atraksi</td>
+                            <td>85.000</td>
+                        </tr>
+                        <tr>
+                            <td data-lang="budget-food">Makanan</td>
+                            <td data-lang="budget-food-desc">9 kali makan</td>
+                            <td>175.000</td>
+                        </tr>
+                        <tr>
+                            <td data-lang="budget-other">Lain-lain</td>
+                            <td data-lang="budget-other-desc">Oleh-oleh, tak terduga, snack</td>
+                            <td>225.000</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="total-budget">
+                    <span data-lang="total-budget">Total Perkiraan Budget:</span> Rp 1.013.400
+                </div>
+            </div>
+        </section>
+        
+        <!-- Tips Section -->
+        <section class="container">
+            <div class="tips-section">
+                <h3 data-lang="tips-title">Tips Backpacker Jakarta-Bandung</h3>
+                
+                <div class="tips-grid">
+                    <div class="tip-card">
+                        <i class="fas fa-train"></i>
+                        <h4 data-lang="tip1-title">Pilih Kereta Ekonomi</h4>
+                        <p data-lang="tip1-desc">Naik kereta ekonomi kelas ekonomi untuk menghemat budget. Pesan tiket online untuk harga terbaik.</p>
+                    </div>
+                    
+                    <div class="tip-card">
+                        <i class="fas fa-bed"></i>
+                        <h4 data-lang="tip2-title">Hostel atau Homestay</h4>
+                        <p data-lang="tip2-desc">Pilih hostel atau homestay yang menawarkan dormitory room untuk menghemat biaya akomodasi.</p>
+                    </div>
+                    
+                    <div class="tip-card">
+                        <i class="fas fa-utensils"></i>
+                        <h4 data-lang="tip3-title">Makan di Warung Lokal</h4>
+                        <p data-lang="tip3-desc">Nikmati makanan di warung-warung lokal yang autentik. Selain lebih murah, Anda juga mendapatkan pengalaman kuliner otentik.</p>
+                    </div>
+                    
+                    <div class="tip-card">
+                        <i class="fas fa-walking"></i>
+                        <h4 data-lang="tip4-title">Jalan Kaki & Angkot</h4>
+                        <p data-lang="tip4-desc">Manfaatkan angkot (angkutan kota) dan berjalan kaki untuk menjelajahi kota. Selain hemat, Anda bisa merasakan atmosfer lokal.</p>
+                    </div>
+                    
+                    <div class="tip-card">
+                        <i class="fas fa-map-marked-alt"></i>
+                        <h4 data-lang="tip5-title">Rencana Rute Matang</h4>
+                        <p data-lang="tip5-desc">Rencanakan rute perjalanan dengan baik untuk menghindari bolak-balik yang menghabiskan waktu dan biaya transportasi.</p>
+                    </div>
+                    
+                    <div class="tip-card">
+                        <i class="fas fa-fill-drip"></i>
+                        <h4 data-lang="tip6-title">Bawa Botol Minum</h4>
+                        <p data-lang="tip6-desc">Bawa botol minum sendiri dan isi ulang di hostel atau tempat umum untuk menghemat uang dan mengurangi sampah plastik.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Footer -->
+    <footer>
+        <section id="footer" class="footer-content">
+            <div class="footer-section">
+                <h3 data-lang="footer-about">Tentang Kami</h3>
+                <p data-lang="footer-about-desc">Kami adalah penyedia layanan itinerary perjalanan terpercaya yang telah membantu ribuan traveler merencanakan petualangan mereka sejak 2010.</p>
+                <div class="social-icons">
+                    <a href="https://web.facebook.com/vmt.co.id/?_rdc=1&_rdr#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/vmt.co.id/"><i class="fab fa-instagram"></i></a>
+                    <a href="https://id.linkedin.com/company/venus-media-teknologi"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h3 data-lang="footer-links">Link Cepat</h3>
+                <ul class="footer-links">
+                    <li><a href="Beranda.html" data-lang="footer-home">Beranda</a></li>
+                    <li><a href="#" data-lang="footer-backpacker">Backpacker Packages</a></li>
+                    <li><a href="Traveler.html" data-lang="footer-traveler">Traveler Packages</a></li>
+                    <li><a href="familytrip.html" data-lang="footer-familytrip">Family Trip Packages</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3 data-lang="footer-contact">Kontak</h3>
+                <p><i class="fas fa-map-marker-alt"></i> <span data-lang="footer-address">Jl. Perjalanan No. 123, Jakarta</span></p>
+                <p><i class="fas fa-phone"></i> +62 813-2191-4117</p>
+                <p><i class="fas fa-envelope"></i> office@vmt.co.id</p>
+            </div>
+        </section>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 VMT Software <span data-lang="footer-rights">All rights reserved</span>.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Data untuk multi bahasa
+        const languageData = {
+            id: {
+                // Navigation
+                "home": "Beranda",
+                "about": "Tentang Kami",
+                "packages": "Paket Perjalanan",
+                "gallery": "Galeri",
+                "contact": "Kontak",
+                
+                // Hero Section
+                "hero-title": "Backpacker Jakarta-Bandung 3 Hari",
+                "hero-desc": "Petualangan hemat dengan transportasi umum dan penginapan budget, nikmati yang terbaik dari Kota Bandung",
+                "budget-tag": "Budget: Rp 1.500.000",
+                "cta-button": "Lihat Itinerary",
+                
+                // Section Title
+                "section-title": "Pengalaman Backpacker",
+                "section-desc": "Perjalanan hemat dengan transportasi umum, menikmati yang terbaik dari Bandung dengan budget terbatas",
+                
+                // Backpacker Info
+                "info-title": "Petualangan Backpacker Jakarta-Bandung",
+                "info-p1": "Perjalanan backpacker dari Jakarta ke Bandung menawarkan pengalaman otentik dengan harga terjangkau. Dengan budget 1.5 juta untuk 3 hari, Anda bisa menikmati berbagai destinasi menarik di Kota Bandung.",
+                "info-p2": "Perjalanan ini dirancang khusus untuk backpacker yang ingin menikmati petualangan tanpa harus mengeluarkan biaya besar. Dengan perencanaan yang matang, Anda bisa mendapatkan pengalaman terbaik dengan budget minimal.",
+                "features-title": "Keuntungan Backpacker:",
+                "feature-1": "Transportasi umum (kereta & bus)",
+                "feature-2": "Penginapan hostel/homestay",
+                "feature-3": "Makan di warung lokal",
+                "feature-4": "Destinasi gratis/affordable",
+                "feature-5": "Fleksibilitas tinggi",
+                
+                // Itinerary
+                "itinerary-title": "Itinerary 3 Hari Backpacker Jakarta - Bandung",
+                "day1-title": "Hari 1: Berangkat ke Bandung",
+                "day1-item1": "Berangkat ke stasiun Gambir",
+                "day1-item2": "Naik KA Argo Parahyangan (Ekonomi Premium)",
+                "day1-item3": "Tiba di Bandung, naik ojol ke hostel",
+                "day1-item4": "Makan siang di warteg",
+                "day1-item5": "Check-in Hostel (populair Hostel Braga)",
+                "day1-item6": "Jalan sore di Jalan Braga",
+                "day1-item7": "Main ke Alun-Alun Kota Bandung & Masjid Raya",
+                "day1-item8": "Makan Malam di Bakmie Tjokin",
+                "day1-item9": "Balik Hostel, istirahat",
+                
+                "day2-title": "Hari 2: Eksplorasi Bandung",
+                "day2-item1": "Sarapan di Braga",
+                "day2-item2": "Naik Ojol Ke Dago",
+                "day2-item3": "Masuk ke Tahura Dago",
+                "day2-item4": "Masuk Goa Belanda",
+                "day2-item5": "Makan Siang di Tahura Dago",
+                "day2-item6": "Masuk Goa Jepang",
+                "day2-item7": "Pulang ke Hostel",
+                "day2-item8": "Makan malam di Warteg",
+                "day2-item9": "Kembali ke Hostel",
+                
+                "day3-title": "Hari 3: Kembali ke Jakarta",
+                "day3-item1": "Sarapan Bubur Ayam",
+                "day3-item2": "Pergi ke Kartika Sari pakai Ojol",
+                "day3-item3": "Belanja Oleh Oleh di Kartika Sari",
+                "day3-item4": "Balik ke Hostel, Check-Out",
+                "day3-item5": "Pergi Ke Stasiun Bandung",
+                "day3-item6": "Naik KA Argo Parahyangan (Ekonomi Premiun)",
+                "day3-item7": "Tiba di Jakarta, Pulang ke Rumah",
+                
+                // Budget
+                "budget-title": "Rincian Budget Backpacker Jakarta-Bandung 3 Hari",
+                "budget-category": "Kategori",
+                "budget-detail": "Detail",
+                "budget-cost": "Biaya (Rp)",
+                "budget-accomodation": "Akomodasi",
+                "budget-accomodation-desc": "2 malam hostel",
+                "budget-transport": "Transportasi",
+                "budget-transport-desc": "Kereta PP, transportasi lokal",
+                "budget-activities": "Aktivitas & Entri",
+                "budget-activities-desc": "Tiket wisata dan atraksi",
+                "budget-food": "Makanan",
+                "budget-food-desc": "6 Kali makan berat",
+                "budget-other": "Lain-lain",
+                "budget-other-desc": "Oleh-oleh, tak terduga, snack",
+                "total-budget": "Total Perkiraan Budget:",
+                
+                // Tips
+                "tips-title": "Tips Backpacker Jakarta-Bandung",
+                "tip1-title": "Pilih Kereta Ekonomi",
+                "tip1-desc": "Naik kereta ekonomi kelas ekonomi untuk menghemat budget. Pesan tiket online untuk harga terbaik.",
+                "tip2-title": "Hostel atau Homestay",
+                "tip2-desc": "Pilih hostel atau homestay yang menawarkan dormitory room untuk menghemat biaya akomodasi.",
+                "tip3-title": "Makan di Warung Lokal",
+                "tip3-desc": "Nikmati makanan di warung-warung lokal yang autentik. Selain lebih murah, Anda juga mendapatkan pengalaman kuliner otentik.",
+                "tip4-title": "Jalan Kaki & Angkot",
+                "tip4-desc": "Manfaatkan angkot (angkutan kota) dan berjalan kaki untuk menjelajahi kota. Selain hemat, Anda bisa merasakan atmosfer lokal.",
+                "tip5-title": "Rencana Rute Matang",
+                "tip5-desc": "Rencanakan rute perjalanan dengan baik untuk menghindari bolak-balik yang menghabiskan waktu và biaya transportasi.",
+                "tip6-title": "Bawa Botol Minum",
+                "tip6-desc": "Bawa botol minum sendiri dan isi ulang di hostel atau tempat umum untuk menghemat uang dan mengurangi sampah plastik.",
+                
+                // Footer
+                "footer-about": "Tentang Kami",
+                "footer-about-desc": "VMT Software berdiri sejak tahun 2005, bergerak dalam bidang Konsultan IT, Khususnya pengembangan perangkat lunak (software).",
+                "footer-links": "Link Cepat",
+                "footer-home": "Beranda",
+                "footer-backpacker": "Paket Backpacker",
+                "footer-traveler": "Paket Traveler",
+                "footer-familytrip": "Paket Family Trip",
+                "footer-address": "Jl. Sunan Ambu A73, Komplek Guruminda Soekarno Hatta - Bandung 40293",
+                "footer-rights": "All rights reserved"
+            },
+            en: {
+                // Navigation
+                "home": "Home",
+                "about": "About Us",
+                "packages": "Travel Packages",
+                "gallery": "Gallery",
+                "contact": "Contact",
+                
+                // Hero Section
+                "hero-title": "Jakarta-Bandung Backpacker 3 Days",
+                "hero-desc": "Budget adventure with public transportation and affordable accommodation, enjoy the best of Kota Bandung",
+                "budget-tag": "Budget: Rp 1,500,000",
+                "cta-button": "View Itinerary",
+                
+                // Section Title
+                "section-title": "Backpacker Experience",
+                "section-desc": "Budget trip with public transportation, enjoying the best of Bandung with limited budget",
+                
+                // Backpacker Info
+                "info-title": "Jakarta-Bandung Backpacker Adventure",
+                "info-p1": "Backpacker travel from Jakarta to Bandung offers authentic experience at affordable prices. With a budget of 1.5 million for 3 days, you can enjoy various interesting destinations in Kota Bandung.",
+                "info-p2": "This trip is specifically designed for backpackers who want to enjoy adventure without spending a lot of money. With careful planning, you can get the best experience with minimal budget.",
+                "features-title": "Backpacker Advantages:",
+                "feature-1": "Public transportation (train & bus)",
+                "feature-2": "Hostel/homestay accommodation",
+                "feature-3": "Eat at local stalls",
+                "feature-4": "Free/affordable destinations",
+                "feature-5": "High flexibility",
+                
+                // Itinerary
+                "itinerary-title": "Itinerary 3 Hari Backpacker Jakarta - Bandung",
+                "day1-title": "Day 1: Going to Bandung",
+                "day1-item1": "Going to Gambir station",
+                "day1-item2": "Take the Argo Parahyangan train (Premium Economy)",
+                "day1-item3": "Arrive in Bandung, take ojol to hostel",
+                "day1-item4": "lunch at warteg",
+                "day1-item5": "Check-in Hostel (populair Hostel Braga)",
+                "day1-item6": "Afternoon walk on Braga Street",
+                "day1-item7": "Visit Alun-Alun Kota Bandung & Masjid Raya",
+                "day1-item8": "Dinner at Bakmie Tjokin",
+                "day1-item9": "Return to Hostel, Rest",
+                
+                "day2-title": "Hari 2: Perjalanan ke Bandung",
+                "day2-item1": "Breakfast at Braga",
+                "day2-item2": "Take Ojol to Dago",
+                "day2-item3": "Enter Tahura Dago",
+                "day2-item4": "Enter Goa Belanda",
+                "day2-item5": "Lunch at Tahura Dago",
+                "day2-item6": "Enter Goa Jepang",
+                "day2-item7": "Return to Hoster",
+                "day2-item8": "Dinner at Warteg",
+                "day2-item9": "Return to Hostel",
+                
+                "day3-title": "Hari 3: Alam Bandung & Kembali ke Jakarta",
+                "day3-item1": "Breakfast Bubur Ayam",
+                "day3-item2": "Go to Kartika Sari by Ojol",
+                "day3-item3": "Buy Souvenirs at Kartika Sari",
+                "day3-item4": "Return to Hostel, Check-Out",
+                "day3-item5": "Go To Bandung Station",
+                "day3-item6": "Take the Argo Parahyangan train (Premium Economy)",
+                "day3-item7": "Arrive in Jakarta, Go Home",
+                
+                // Budget
+                "budget-title": "Jakarta-Bandung 3 Days Backpacker Budget Details",
+                "budget-category": "Category",
+                "budget-detail": "Details",
+                "budget-cost": "Cost (Rp)",
+                "budget-accomodation": "Accommodation",
+                "budget-accomodation-desc": "2 nights hostel (1 Jakarta + 1 Bandung)",
+                "budget-transport": "Transportation",
+                "budget-transport-desc": "Round trip train, local transportation",
+                "budget-activities": "Activities & Entrance",
+                "budget-activities-desc": "Tourist tickets and attractions",
+                "budget-food": "Food",
+                "budget-food-desc": "6 heavy meals",
+                "budget-other": "Others",
+                "budget-other-desc": "Souvenirs, unexpected expenses, snacks",
+                "total-budget": "Total Estimated Budget:",
+                
+                // Tips
+                "tips-title": "Backpacker Tips Jakarta-Bandung",
+                "tip1-title": "Choose Economy Train",
+                "tip1-desc": "Take economy class train to save budget. Book tickets online for the best price.",
+                "tip2-title": "Hostel or Homestay",
+                "tip2-desc": "Choose hostels or homestays that offer dormitory rooms to save on accommodation costs.",
+                "tip3-title": "Eat at Local Stalls",
+                "tip3-desc": "Enjoy food at authentic local stalls. Besides being cheaper, you also get an authentic culinary experience.",
+                "tip4-title": "Walking & Angkot",
+                "tip4-desc": "Use angkot (city transportation) and walk to explore the city. Besides being economical, you can feel the local atmosphere.",
+                "tip5-title": "Solid Route Plan",
+                "tip5-desc": "Plan your travel route well to avoid back and forth that wastes time and transportation costs.",
+                "tip6-title": "Bring Your Water Bottle",
+                "tip6-desc": "Bring your own water bottle and refill at hostels or public places to save money and reduce plastic waste.",
+                
+                
+                // Footer
+                "footer-about": "About Us",
+                "footer-about-desc": "VMT Software has been established since 2005, engaged in the field of IT Consultants, especially software development.",
+                "footer-links": "Quick Links",
+                "footer-home": "Home",
+                "footer-backpacker": "Backpacker Packages",
+                "footer-traveler": "Traveler Packages",
+                "footer-familytrip": "Family Trip Packages",
+                "footer-address": "Jl. Sunan Ambu A73, Komplek Guruminda Soekarno Hatta - Bandung 40293",
+                "footer-rights": "All rights reserved"
+            }
+        };
+
+        // Fungsi untuk mengganti bahasa
+        function changeLanguage(lang) {
+            // Update tombol bahasa
+            document.querySelectorAll('.language-selector button').forEach(button => {
+                button.classList.remove('active');
+            });
+            document.getElementById(`${lang}-lang`).classList.add('active');
+            
+            // Update semua teks yang memiliki atribut data-lang
+            document.querySelectorAll('[data-lang]').forEach(element => {
+                const key = element.getAttribute('data-lang');
+                if (languageData[lang] && languageData[lang][key]) {
+                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                        element.placeholder = languageData[lang][key];
+                    } else {
+                        element.textContent = languageData[lang][key];
+                    }
+                }
+            });
+            
+            // Simpan preferensi bahasa
+            localStorage.setItem('preferred-language', lang);
+            
+            // Ubah atribut lang pada HTML
+            document.documentElement.lang = lang;
+            
+            console.log(`Language changed to: ${lang}`);
+        }
+
+        // Event listener untuk tombol bahasa
+        document.getElementById('id-lang').addEventListener('click', () => changeLanguage('id'));
+        document.getElementById('en-lang').addEventListener('click', () => changeLanguage('en'));
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Load bahasa yang dipilih sebelumnya atau default Indonesia
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedLanguage = localStorage.getItem('preferred-language') || 'id';
+            changeLanguage(savedLanguage);
+            
+            // Additional functionality for the CTA button
+            document.querySelector('.cta-button').addEventListener('click', function() {
+                document.querySelector('.itinerary-details').scrollIntoView({ 
+                    behavior: 'smooth' 
+                });
+            });
+        });
+    </script>
+</body>
+</html>

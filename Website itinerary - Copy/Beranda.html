@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TravelItinerary - Your Perfect Travel Companion</title>
+    <link rel="icon" href="Untitled design (3).png" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        html {
+        scroll-behavior: smooth;
+        }
+        
+        body {
+            overflow-x: hidden;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+        
+        /* Header dengan Parallax Effect */
+        .header {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1400&q=80');
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* Navbar yang Menyambung ke Header */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            background-color: rgba(0, 0, 0, 0.6);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            transition: background-color 0.3s ease;
+        }
+        
+        .navbar.scrolled {
+            background-color: rgba(0, 0, 0, 0.9);
+            padding: 15px 5%;
+        }
+        
+        .logo {
+         align-items: center;
+         width: auto;
+         height: 40px;
+        display: flex
+        }
+        
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin: 0 15px;
+        }
+        
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #4e89e8;
+        }
+        
+        .language-selector {
+            display: flex;
+            align-items: center;
+        }
+        
+        .language-selector button {
+            background: none;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            font-size: 14px;
+            margin-left: 10px;
+            opacity: 0.7;
+            transition: opacity 0.3s;
+            padding: 5px 10px;
+            border-radius: 3px;
+        }
+        
+        .language-selector button.active {
+            opacity: 1;
+            font-weight: 600;
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        .language-selector button:hover {
+            opacity: 1;
+        }
+        
+        /* Hero Section */
+        .hero {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #fff;
+            padding: 0 20px;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+        }
+        
+        .cta-button {
+            padding: 12px 30px;
+            background-color: #4e89e8;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        
+        .cta-button:hover {
+            background-color: #3a70c7;
+            transform: translateY(-3px);
+        }
+        
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70px;
+            height: 4px;
+            background-color: #4e89e8;
+        }
+        
+        .section-title p {
+            color: #777;
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* Trip Options */
+        .trip-options {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .trip-card {
+            background-color: #fff;
+            border-radius: 15px;
+            overflow: hidden;
+            width: 350px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .trip-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+        
+        .trip-image {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .trip-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .trip-card:hover .trip-image img {
+            transform: scale(1.1);
+        }
+        
+        .trip-content {
+            padding: 25px;
+        }
+        
+        .trip-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .trip-content p {
+            color: #777;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        .trip-features {
+            margin-bottom: 25px;
+        }
+        
+        .trip-features li {
+            margin-bottom: 8px;
+            list-style-type: none;
+            display: flex;
+            align-items: center;
+        }
+        
+        .trip-features li i {
+            color: #4e89e8;
+            margin-right: 10px;
+        }
+        
+        .trip-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #4e89e8;
+            margin-bottom: 20px;
+            display: block;
+        }
+        
+        .trip-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #4e89e8;
+            color: white;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+        
+        .trip-button:hover {
+            background-color: #3a70c7;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #222;
+            color: #fff;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            padding: 0 20px;
+        }
+        
+        .footer-section {
+            flex: 1;
+            min-width: 300px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-section h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background-color: #4e89e8;
+        }
+        
+        .footer-section p {
+            line-height: 1.6;
+            margin-bottom: 20px;
+            color: #bbb;
+            
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #bbb;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: #4e89e8;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-icons a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: #333;
+            border-radius: 50%;
+            color: #fff;
+            text-align: center;
+            line-height: 40px;
+            transition: background-color 0.3s;
+        }
+        
+        .social-icons a:hover {
+            background-color: #4e89e8;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #444;
+            margin-top: 30px;
+            color: #bbb;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .trip-card {
+                width: 300px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 15px 5%;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .trip-options {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .trip-card {
+                width: 100%;
+                max-width: 400px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .footer-section {
+                min-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header dengan Parallax -->
+    <header class="header">
+        <!-- Navbar -->
+        <nav class="navbar">
+        <div>
+        <a href="#beranda">
+         <img class="logo" src="logo_white_text.png" alt="Logo Perusahaan">
+        </a>
+        </div>
+            
+            <ul class="nav-links">
+                <li><a href="#trip-options" data-lang="packages">Paket Perjalanan</a></li>
+                <li><a href="#footer" data-lang="contact">Kontak</a></li>
+                <li><a href="https://vmt.co.id/" data-lang="about">Tentang Kami</a></li>
+            </ul>
+            
+            <div class="language-selector">
+                <button id="id-lang" class="active">ID</button>
+                <button id="en-lang">EN</button>
+            </div>
+        </nav>
+        
+        <!-- Hero Section -->
+  <section id="beranda" class="hero">
+    <h1 data-lang="hero-title">Jelajahi Bandung dengan Jadwal Sempurna</h1>
+    <p data-lang="hero-desc">
+      Rencanakan perjalanan impian Anda dengan tiga pilihan experience berbeda: Backpacker, Traveler, dan Family Trip
+    </p>
+    <button class="cta-button" data-lang="cta-button">Mulai Petualangan</button>
+  </section>
+    </header>
+    
+    <!-- Main Content -->
+    <main>
+        <!-- Trip Options Section -->
+        <section id="trip-options" class="container">
+            <div class="section-title">
+             <h2 data-lang="trip-title">Pilihan Perjalanan</h2>
+            <p data-lang="trip-desc">Temukan gaya traveling yang paling sesuai dengan kepribadian dan kebutuhan Anda</p>
+             </div>
+            
+            <div class="trip-options">
+                <!-- Backpacker Option -->
+                <div class="trip-card">
+                    <div class="trip-image">
+                        <img src="https://images.unsplash.com/photo-1551632811-561732d1e306?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Backpacker Trip">
+                    </div>
+                    <div class="trip-content">
+                        <h3 data-lang="backpacker-title">Backpacker</h3>
+                        <p data-lang="backpacker-desc">Untuk petualang yang menyukai kebebasan, budget terbatas, dan pengalaman otentik.</p>
+                        <ul class="trip-features">
+                            <li><i class="fas fa-check"></i> <span data-lang="backpacker-feature1">Akomodasi budget-friendly</span></li>
+                            <li><i class="fas fa-check"></i> <span data-lang="backpacker-feature2">Transportasi lokal</span></li>
+                            <li><i class="fas fa-check"></i> <span data-lang="backpacker-feature3">Aktivitas petualangan</span></li>
+                            <li><i class="fas fa-check"></i> <span data-lang="backpacker-feature4">Makanan lokal</span></li>
+                            <li><i class="fas fa-check"></i> <span data-lang="backpacker-feature5">Fleksibilitas tinggi</span></li>
+                        </ul>
+                        <span class="trip-price" data-lang="backpacker-price">Mulai dari Rp 1.500.000</span>
+                        <a href="Backpacker.html" class="trip-button" data-lang="trip-button">Pilih Paket</a>
+                    </div>
+                </div>
+                
+                <!-- Traveler Option -->
+                <div class="trip-card">
+                    <div class="trip-image">
+                        <img src="https://images.unsplash.com/photo-1503220317375-aaad61436b1b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Traveler Trip">
+                    </div>
+                    <div class="trip-content">
+                        <h3 data-lang="traveler-title">Traveler</h3>
+                        <p data-lang="traveler-desc">Untuk mereka yang menginginkan keseimbangan antara kenyamanan dan petualangan.</p>
+                        <ul class="trip-features">
+                            <li><i class="fas fa-check"></i> <span data-lang="traveler-feature1">Akomodasi nyaman</span></li>
+                            <li><i class="fas fa-check"></i> <span data-lang="traveler-feature2">Transportasi lokal premium</span></li>
+                            <li><i class="fas fa-check"></i> <span data-lang="traveler-feature3">Wisata terkurasi</span></li>
+                            <li><i class="fas fa-check"></i> <span data-lang="traveler-feature4">Makanan pilihan</span></li>
+                            <li><i class="fas fa-check"></i> <span data-lang="traveler-feature5">Traveling nyaman</span></li>
+                        </ul>
+                        <span class="trip-price" data-lang="traveler-price">Mulai dari Rp 4.000.000</span>
+                        <a href="Traveler.html" class="trip-button" data-lang="trip-button">Pilih Paket</a>
+                    </div>
+                </div>
+                
+                <!-- Family Trip Option -->
+                <div class="trip-card">
+                    <div class="trip-image">
+                        <img src="https://images.unsplash.com/photo-1539635278303-d4002c07eae3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Family Trip">
+                    </div>
+                    <div class="trip-content">
+                        <h3 data-lang="family-title">Family Trip</h3>
+                        <p data-lang="family-desc">Perjalanan khusus keluarga dengan fasilitas lengkap dan aktivitas untuk semua usia.</p>
+                        <ul class="trip-features">
+                            <li><i class="fas fa-check"></i> <span data-lang="family-feature1">Akomodasi keluarga</span></li>
+                            <li><i class="fas fa-check"></i> <span data-lang="family-feature2">Transportasi khusus</span></li>
+                            <li><i class="fas fa-check"></i> <span data-lang="family-feature3">Aktivitas ramah anak</span></li>
+                            <li><i class="fas fa-check"></i> <span data-lang="family-feature4">Makanan keluarga</span></li>
+                            <li><i class="fas fa-check"></i> <span data-lang="family-feature5">Waktu fleksibel</span></li>
+                        </ul>
+                        <span class="trip-price" data-lang="family-price">Mulai dari Rp 5.000.000</span>
+                        <a href="familytrip.html" class="trip-button" data-lang="trip-button">Pilih Paket</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Footer -->
+    <footer>
+        <section id="footer" class="footer-content">
+            <div class="footer-section">
+                <h3 data-lang="footer-about">Tentang Kami</h3>
+                <p data-lang="footer-about-desc">VMT Software berdiri sejak tahun 2005, bergerak dalam bidang Konsultan IT, Khususnya pengembangan perangkat lunak (software)</p>
+                <div class="social-icons">
+                    <a href="https://web.facebook.com/vmt.co.id/?_rdc=1&_rdr#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/vmt.co.id/"><i class="fab fa-instagram"></i></a>
+                    <a href="https://id.linkedin.com/company/venus-media-teknologi"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h3 data-lang="footer-links">Link Cepat</h3>
+                <ul class="footer-links">
+                    <li><a href="#trip-options" data-lang="footer-packages">Paket Perjalanan</a></li>
+                    <li><a href="#" data-lang="footer-destinations">Destinasi Populer</a></li>
+                    <li><a href="#" data-lang="footer-food">Makanan Populer</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3 data-lang="footer-contact">Kontak</h3>
+                <p><i class="fas fa-map-marker-alt"></i> <span data-lang="footer-address">Jl. Perjalanan No. 123, Jakarta</span></p>
+                <p><i class="fas fa-phone"></i> +62 813-2191-4117</p>
+                <p><i class="fas fa-envelope"></i> office@vmt.co.id</p>
+            
+            </div>
+        </section>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 VMT Software <span data-lang="footer-rights">All rights reserved</span>.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Data untuk multi bahasa
+        const languageData = {
+            id: {
+                // Navigation
+                "about": "Tentang Kami",
+                "packages": "Paket Perjalanan",
+                "contact": "Kontak",
+                
+                // Hero Section
+                "hero-title": "Jelajahi Bandung dengan Jadwal Sempurna",
+                "hero-desc": "Rencanakan perjalanan impian Anda dengan tiga pilihan experience berbeda: Backpacker, Traveler, dan Family Trip",
+                "cta-button": "Mulai Petualangan",
+                
+                // Trip Options
+                "trip-title": "Pilihan Perjalanan",
+                "trip-desc": "Temukan gaya traveling yang paling sesuai dengan kepribadian dan kebutuhan Anda",
+                
+                "backpacker-title": "Backpacker",
+                "backpacker-desc": "Untuk petualang yang menyukai kebebasan, budget terbatas, dan pengalaman otentik.",
+                "backpacker-feature1": "Akomodasi budget-friendly",
+                "backpacker-feature2": "Transportasi lokal",
+                "backpacker-feature3": "Aktivitas petualangan",
+                "backpacker-feature4": "Makanan lokal",
+                "backpacker-feature5": "Fleksibilitas tinggi",
+                "backpacker-price": "Mulai dari Rp 1.500.000",
+                
+                "traveler-title": "Traveler",
+                "traveler-desc": "Untuk mereka yang menginginkan keseimbangan antara kenyamanan dan petualangan.",
+                "traveler-feature1": "Akomodasi nyaman",
+                "traveler-feature2": "Transportasi lokal premium",
+                "traveler-feature3": "Wisata terkurasi",
+                "traveler-feature4": "Makanan pilihan",
+                "traveler-feature5": "Traveling nyaman",
+                "traveler-price": "Mulai dari Rp 4.000.000",
+                
+                "family-title": "Family Trip",
+                "family-desc": "Perjalanan khusus keluarga dengan fasilitas lengkap dan aktivitas untuk semua usia.",
+                "family-feature1": "Akomodasi keluarga",
+                "family-feature2": "Transportasi pribadi",
+                "family-feature3": "Aktivitas ramah anak",
+                "family-feature4": "Makanan keluarga",
+                "family-feature5": "Waktu fleksibel",
+                "family-price": "Mulai dari Rp 8.000.000",
+                
+                "trip-button": "Pilih Paket",
+                
+                // Footer
+                "footer-about": "Tentang Kami",
+                "footer-about-desc": "VMT Software berdiri sejak tahun 2005, bergerak dalam bidang Konsultan IT, Khususnya pengembangan perangkat lunak (software).",
+                "footer-links": "Link Cepat",
+                "footer-packages": "Paket Perjalanan",
+                "footer-destinations": "Destinasi Bandung",
+                "footer-blog": "Kuliner Bandung",
+                "footer-address": "Jl. Sunan Ambu A73, Komplek Guruminda Soekarno Hatta - Bandung 40293",
+                "footer-rights": "All rights reserved"
+            },
+            en: {
+                // Navigation
+                "about": "About Us",
+                "packages": "Travel Packages",
+                "contact": "Contact",
+                
+                // Hero Section
+                "hero-title": "Explore Bandung With Perfect schedules",
+                "hero-desc": "Plan your dream trip with three different experiences: Backpacker, Traveler, and Family Trip",
+                "cta-button": "Start Adventure",
+                
+                // Trip Options
+                "trip-title": "Travel Options",
+                "trip-desc": "Find the travel style that best suits your personality and needs",
+                
+                "backpacker-title": "Backpacker",
+                "backpacker-desc": "For adventurers who love freedom, limited budget, and authentic experiences.",
+                "backpacker-feature1": "Budget-friendly accommodation",
+                "backpacker-feature2": "Local transportation",
+                "backpacker-feature3": "Adventure activities",
+                "backpacker-feature4": "Local food",
+                "backpacker-feature5": "High flexibility",
+                "backpacker-price": "From Rp 1,500,000",
+                
+                "traveler-title": "Traveler",
+                "traveler-desc": "For those who want a balance between comfort and adventure.",
+                "traveler-feature1": "Comfortable accommodation",
+                "traveler-feature2": "Private transportation",
+                "traveler-feature3": "Curated tours",
+                "traveler-feature4": "Selected meals",
+                "traveler-feature5": "Comfortable traveling",
+                "traveler-price": "From Rp 4,000,000",
+                
+                "family-title": "Family Trip",
+                "family-desc": "Special family trips with complete facilities and activities for all ages.",
+                "family-feature1": "Family accommodation",
+                "family-feature2": "private transportation",
+                "family-feature3": "Child-friendly activities",
+                "family-feature4": "Family meals",
+                "family-feature5": "Flexible timing",
+                "family-price": "From Rp 8,000,000",
+                
+                "trip-button": "Choose Package",
+                
+                // Footer
+                "footer-about": "About Us",
+                "footer-about-desc": "VMT Software has been established since 2005, engaged in the field of IT Consultants, especially software development.",
+                "footer-links": "Quick Links",
+                "footer-packages": "Travel Packages",
+                "footer-destinations": "Bandung destinations",
+                "footer-food": "Bandung Culinary",
+                "footer-address": "Jl. Sunan Ambu A73, Komplek Guruminda Soekarno Hatta - Bandung 40293",
+                "footer-rights": "All rights reserved"
+            }
+        };
+
+        // Fungsi untuk mengganti bahasa
+        function changeLanguage(lang) {
+            // Update tombol bahasa
+            document.querySelectorAll('.language-selector button').forEach(button => {
+                button.classList.remove('active');
+            });
+            document.getElementById(`${lang}-lang`).classList.add('active');
+            
+            // Update semua teks yang memiliki atribut data-lang
+            document.querySelectorAll('[data-lang]').forEach(element => {
+                const key = element.getAttribute('data-lang');
+                if (languageData[lang] && languageData[lang][key]) {
+                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                        element.placeholder = languageData[lang][key];
+                    } else {
+                        element.textContent = languageData[lang][key];
+                    }
+                }
+            });
+            
+            // Simpan preferensi bahasa
+            localStorage.setItem('preferred-language', lang);
+            
+            // Ubah atribut lang pada HTML
+            document.documentElement.lang = lang;
+            
+            console.log(`Language changed to: ${lang}`);
+        }
+
+        // Event listener untuk tombol bahasa
+        document.getElementById('id-lang').addEventListener('click', () => changeLanguage('id'));
+        document.getElementById('en-lang').addEventListener('click', () => changeLanguage('en'));
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Load bahasa yang dipilih sebelumnya atau default Indonesia
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedLanguage = localStorage.getItem('preferred-language') || 'id';
+            changeLanguage(savedLanguage);
+            
+            // Debugging - log untuk memastikan fungsi terpanggil
+            console.log('DOM loaded, language set to:', savedLanguage);
+        });
+
+        document.querySelector(".cta-button").addEventListener("click", () => {
+      document.querySelector(".section-title").scrollIntoView({ behavior: "smooth" });
+        });
+
+    </script>
+</body>
+</html>

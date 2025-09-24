@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Family Trip Itinerary - Jakarta Bandung</title>
+    <link rel="icon" href="Untitled design (3).png" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        html {
+        scroll-behavior: smooth;
+        }
+        
+        body {
+            overflow-x: hidden;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+        
+        /* Header dengan Parallax Effect */
+        .header {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url('Family2.jpg');
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* Navbar yang Menyambung ke Header */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            background-color: rgba(0, 0, 0, 0.6);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            transition: background-color 0.3s ease;
+        }
+        
+        .navbar.scrolled {
+            background-color: rgba(0, 0, 0, 0.9);
+            padding: 15px 5%;
+        }
+        
+        .logo {
+         align-items: center;
+         width: auto;
+         height: 40px;
+        display: flex
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin: 0 15px;
+        }
+        
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #4e89e8;
+        }
+        
+        .language-selector {
+            display: flex;
+            align-items: center;
+        }
+        
+        .language-selector button {
+            background: none;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            font-size: 14px;
+            margin-left: 10px;
+            opacity: 0.7;
+            transition: opacity 0.3s;
+            padding: 5px 10px;
+            border-radius: 3px;
+        }
+        
+        .language-selector button.active {
+            opacity: 1;
+            font-weight: 600;
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        .language-selector button:hover {
+            opacity: 1;
+        }
+        
+        /* Hero Section */
+        .hero {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #fff;
+            padding: 0 20px;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+        }
+        
+        .budget-tag {
+            background-color: #63636388;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        
+        .cta-button {
+            padding: 12px 30px;
+            background-color: #4e89e8;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        
+        .cta-button:hover {
+            background-color: #3a70c7;
+            transform: translateY(-3px);
+        }
+        
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70px;
+            height: 4px;
+            background-color: #4e89e8;
+        }
+        
+        .section-title p {
+            color: #777;
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* Backpacker Content */
+        .backpacker-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+        
+        .backpacker-info {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .backpacker-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            color: #333;
+        }
+        
+        .backpacker-info p {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .backpacker-features {
+            margin-bottom: 30px;
+        }
+        
+        .backpacker-features li {
+            margin-bottom: 10px;
+            list-style-type: none;
+            display: flex;
+            align-items: center;
+        }
+        
+        .backpacker-features li i {
+            color: #4e89e8;
+            margin-right: 10px;
+        }
+        
+        .backpacker-image {
+            flex: 1;
+            min-width: 300px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .backpacker-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        /* Itinerary Details */
+        .itinerary-details {
+            background-color: #fff;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-bottom: 60px;
+        }
+        
+        .itinerary-details h3 {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: #333;
+            text-align: center;
+        }
+        
+        .day {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .day:last-child {
+            border-bottom: none;
+        }
+        
+        .day h4 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #4e89e8;
+        }
+        
+        .day ul {
+            padding-left: 20px;
+        }
+        
+        .day li {
+            margin-bottom: 10px;
+            color: #555;
+        }
+        
+        .time-slot {
+            font-weight: 600;
+            color: #4e89e8;
+            margin-right: 5px;
+        }
+        
+        .cost {
+            font-style: italic;
+            color: #777;
+            margin-left: 10px;
+        }
+        
+        /* Budget Section */
+        .budget-section {
+            background-color: #f8f9fa;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .budget-section h3 {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: #333;
+            text-align: center;
+        }
+        
+        .budget-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+        }
+        
+        .budget-table th, .budget-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .budget-table th {
+            background-color: #4e89e8;
+            color: white;
+        }
+        
+        .budget-table tr:hover {
+            background-color: #f1f1f1;
+        }
+        
+        .total-budget {
+            text-align: right;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #4e89e8;
+        }
+        
+        /* Tips Section */
+        .tips-section {
+            margin-top: 60px;
+            background-color: #fff;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .tips-section h3 {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: #333;
+            text-align: center;
+        }
+        
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .tip-card {
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            padding: 25px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .tip-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .tip-card i {
+            font-size: 2.5rem;
+            color: #4e89e8;
+            margin-bottom: 15px;
+        }
+        
+        .tip-card h4 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .tip-card p {
+            color: #555;
+            line-height: 1.6;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            padding: 80px 0;
+            background-color: #4e89e8;
+            color: white;
+            margin-top: 60px;
+        }
+        
+        .cta-section h3 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .cta-section p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        .cta-button-secondary {
+            padding: 12px 30px;
+            background-color: white;
+            color: #4e89e8;
+            border: none;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        
+        .cta-button-secondary:hover {
+            background-color: #f1f1f1;
+            transform: translateY(-3px);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #222;
+            color: #fff;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            padding: 0 20px;
+        }
+        
+        .footer-section {
+            flex: 1;
+            min-width: 300px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-section h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background-color: #4e89e8;
+        }
+        
+        .footer-section p {
+            line-height: 1.6;
+            margin-bottom: 20px;
+            color: #bbb;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #bbb;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: #4e89e8;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-icons a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: #333;
+            border-radius: 50%;
+            color: #fff;
+            text-align: center;
+            line-height: 40px;
+            transition: background-color 0.3s;
+        }
+        
+        .social-icons a:hover {
+            background-color: #4e89e8;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #444;
+            margin-top: 30px;
+            color: #bbb;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 15px 5%;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .footer-section {
+                min-width: 100%;
+            }
+            
+            .itinerary-details, .budget-section, .tips-section {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header dengan Parallax -->
+    <header class="header">
+        <!-- Navbar -->
+        <nav class="navbar">
+            <a href="#beranda">
+             <img class="logo" src="logo_white_text.png" alt="Logo Perusahaan">
+            </a>
+            </div>
+            
+            <ul class="nav-links">
+                <li><a href="Beranda.html" data-lang="home">Beranda</a></li>
+                <li><a href="https://vmt.co.id/#" data-lang="about">Tentang Kami</a></li>
+                <li><a href="#footer" data-lang="contact">Kontak</a></li>
+            </ul>
+            
+            <div class="language-selector">
+                <button id="id-lang" class="active">ID</button>
+                <button id="en-lang">EN</button>
+            </div>
+        </nav>
+        
+        <!-- Hero Section -->
+        <section id="beranda" class="hero">
+            <h1 data-lang="hero-title">Backpacker Jakarta-Bandung 3 Hari</h1>
+            <p data-lang="hero-desc">Petualangan hemat dengan transportasi umum dan penginapan budget, nikmati yang terbaik dari kedua kota</p>
+            <div class="budget-tag" data-lang="budget-tag">Budget: Rp 1.500.000</div>
+            <button class="cta-button" data-lang="cta-button">Lihat Itinerary</button>
+        </section>
+    </header>
+    
+    <!-- Main Content -->
+    <main>
+        <!-- Backpacker Info Section -->
+        <section class="container">
+            <div class="section-title">
+                <h2 data-lang="section-title">Backpacker Experience</h2>
+                <p data-lang="section-desc">Perjalanan hemat dengan transportasi umum, menikmati yang terbaik dari Jakarta dan Bandung dengan budget terbatas</p>
+            </div>
+            
+            <div class="backpacker-content">
+                <div class="backpacker-info">
+                    <h3 data-lang="info-title">Petualangan Backpacker Jakarta-Bandung</h3>
+                    <p data-lang="info-p1">Perjalanan backpacker dari Jakarta ke Bandung menawarkan pengalaman otentik dengan harga terjangkau. Dengan budget 1.5 juta untuk 3 hari, Anda bisa menikmati berbagai destinasi menarik di kedua kota.</p>
+                    <p data-lang="info-p2">Perjalanan ini dirancang khusus untuk backpacker yang ingin menikmati petualangan tanpa harus mengeluarkan biaya besar. Dengan perencanaan yang matang, Anda bisa mendapatkan pengalaman terbaik dengan budget minimal.</p>
+                    
+                    <h4 data-lang="features-title">Keuntungan Backpacker:</h4>
+                    <ul class="backpacker-features">
+                        <li><i class="fas fa-check"></i> <span data-lang="feature-1">Transportasi umum (kereta & bus)</span></li>
+                        <li><i class="fas fa-check"></i> <span data-lang="feature-2">Penginapan hostel/homestay</span></li>
+                        <li><i class="fas fa-check"></i> <span data-lang="feature-3">Makan di warung lokal</span></li>
+                        <li><i class="fas fa-check"></i> <span data-lang="feature-4">Destinasi gratis/affordable</span></li>
+                        <li><i class="fas fa-check"></i> <span data-lang="feature-5">Fleksibilitas tinggi</span></li>
+                    </ul>
+                </div>
+                
+                <div class="backpacker-image">
+                    <img src="family.jpg" alt="Backpacker Journey">
+                </div>
+            </div>
+        </section>
+        
+        <!-- Itinerary Details -->
+        <section class="container">
+            <div class="itinerary-details">
+                <h3 data-lang="itinerary-title">3 Hari Backpacker Jakarta - Bandung</h3>
+                
+                <div class="day">
+                    <h4 data-lang="day1-title">Hari 1: Jakarta → Bandung & Citywalk</h4>
+                    <ul>
+                        <li><span class="time-slot">06.00</span> - <span data-lang="day1-item1">Berangkat dari Jakarta (bensin & tol)</span> <span class="cost">(Rp 525.000)</span></li>
+                        <li><span class="time-slot">10.00</span> - <span data-lang="day1-item2">Check-in Hilton Bandung (2 malam)</span> <span class="cost">(Rp 3.500.000)</span></li>
+                        <li><span class="time-slot">11.30</span> - <span data-lang="day1-item3">Makan siang di Sudirman Street Food Court</span> <span class="cost">(Rp 400.000)</span></li>
+                        <li><span class="time-slot">13.30</span> - <span data-lang="day1-item4">Belanja & main anak di Paskal 23 Mall</span> <span class="cost">(Rp 300.000)</span></li>
+                        <li><span class="time-slot">17.00</span> - <span data-lang="day1-item5">Berenang & santai di hotel</span> <span class="cost">(gratis)</span></li>
+                        <li><span class="time-slot">19.00</span> - <span data-lang="day1-item6">Dinner di Fresco Restaurant Hilton</span> <span class="cost">(Rp 600.000)</span></li>
+                    </ul>
+                </div>
+
+                <div class="day">
+                    <h4 data-lang="day2-title">Hari 2: Bandung Zoo, Museum & Braga</h4>
+                    <ul>
+                        <li><span class="time-slot">07.00</span> - <span data-lang="day2-item1">Sarapan di hotel</span> <span class="cost">(Free)</span></li>
+                        <li><span class="time-slot">08.30</span> - <span data-lang="day2-item2">Kunjungi Bandung Zoo</span> <span class="cost">(Rp 280.000 + Snack)</span></li>
+                        <li><span class="time-slot">12.30</span> - <span data-lang="day2-item3">Makan siang di Café D’Pakar</span> <span class="cost">(Rp 500.000)</span></li>
+                        <li><span class="time-slot">14.30</span> - <span data-lang="day2-item4">Explore Museum Geologi</span> <span class="cost">(Rp 30.000)</span></li>
+                        <li><span class="time-slot">16.30</span> - <span data-lang="day2-item5">Jalan sore & foto di Braga Street</span> <span class="cost">(Rp 150.000 Free)</span></li>
+                        <li><span class="time-slot">19.00</span> - <span data-lang="day2-item6">Dinner di Atmosphere Resort Café</span> <span class="cost">(Rp 600.000)</span></li>
+                    </ul>
+                </div>
+
+                <div class="day">
+                    <h4 data-lang="day3-title">Hari 3: Museum & Oleh-oleh</h4>
+                    <ul>
+                        <li><span class="time-slot">07.00</span> - <span data-lang="day3-item1">Sarapan & check-out hotel</span> <span class="cost">(Free)</span></li>
+                        <li><span class="time-slot">08.30</span> - <span data-lang="day3-item2">Kunjungi Museum Sri Baduga</span> <span class="cost">(Rp 30.000)</span></li>
+                        <li><span class="time-slot">11.00</span> - <span data-lang="day3-item3">Lunch di Nara Park (kids playground)</span> <span class="cost">(Rp 500.000)</span></li>
+                        <li><span class="time-slot">13.00</span> - <span data-lang="day3-item4">Belanja oleh-oleh di Kartika Sari / Prima Rasa</span> <span class="cost">(Rp 500.000)</span></li>
+                        <li><span class="time-slot">15.00</span> - <span data-lang="day3-item5">Perjalanan pulang ke Jakarta</span> <span class="cost">(Rp 525.000)</span></li>
+                        <li><span class="time-slot">20.00</span> - <span data-lang="day3-item6">Tiba di Jakarta, trip selesai</span></li>
+                    </ul>
+                </div>
+
+            </div>
+        </section>
+        
+        <!-- Budget Section -->
+        <section class="container">
+            <div class="budget-section">
+                <h3 data-lang="budget-title">Rincian Budget Backpacker Jakarta-Bandung 3 Hari</h3>
+                
+                <table class="budget-table">
+                    <thead>
+                        <tr>
+                            <th data-lang="budget-category">Kategori</th>
+                            <th data-lang="budget-detail">Detail</th>
+                            <th data-lang="budget-cost">Biaya (Rp)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td data-lang="budget-accomodation">Akomodasi</td>
+                            <td data-lang="budget-accomodation-desc">2 malam hostel (1 Jakarta + 1 Bandung)</td>
+                            <td>Rp 3.500.000</td>
+                        </tr>
+                        <tr>
+                            <td data-lang="budget-transport">Transportasi</td>
+                            <td data-lang="budget-transport-desc">Kereta PP, transportasi lokal</td>
+                            <td>Rp 1.050.000</td>
+                        </tr>
+                        <tr>
+                            <td data-lang="budget-activities">Aktivitas & Entri</td>
+                            <td data-lang="budget-activities-desc">Tiket wisata dan atraksi</td>
+                            <td>Rp 440.000</td>
+                        </tr>
+                        <tr>
+                            <td data-lang="budget-food">Makanan</td>
+                            <td data-lang="budget-food-desc">6 Kali Makan</td>
+                            <td>Rp 2.750.000</td>
+                        </tr>
+                        <tr>
+                            <td data-lang="budget-other">Lain-lain</td>
+                            <td data-lang="budget-other-desc">Oleh-oleh, tak terduga, snack</td>
+                            <td>Rp 650.000</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="total-budget">
+                    <span data-lang="total-budget">Total Perkiraan Budget:</span> Rp 8.390.000
+                </div>
+            </div>
+        </section>
+        
+        <!-- Tips Section -->
+        <section class="container">
+            <div class="tips-section">
+                <h3 data-lang="tips-title">Tips Backpacker Jakarta-Bandung</h3>
+                
+                <div class="tips-grid">
+                    <div class="tip-card">
+                        <i class="fas fa-car-side"></i>
+                        <h4 data-lang="tip1-title">Persiapan Transportasi</h4>
+                        <p data-lang="tip1-desc">Cek kondisi mobil sebelum berangkat dan isi bensin full dari Jakarta.</p>
+                    </div>
+                    
+                    <div class="tip-card">
+                        <i class="fas fa-hotel"></i>
+                        <h4 data-lang="tip2-title">Hostel atau Homestay</h4>
+                        <p data-lang="tip2-desc">Pilih hostel atau homestay yang menawarkan dormitory room untuk menghemat biaya akomodasi.</p>
+                    </div>
+                    
+                    <div class="tip-card">
+                        <i class="fas fa-utensils"></i>
+                        <h4 data-lang="tip3-title">Makan di Warung Lokal</h4>
+                        <p data-lang="tip3-desc">Nikmati makanan di warung-warung lokal yang autentik. Selain lebih murah, Anda juga mendapatkan pengalaman kuliner otentik.</p>
+                    </div>
+                    
+                    <div class="tip-card">
+                        <i class="fas fa-clock"></i>
+                        <h4 data-lang="tip4-title">Jalan Kaki & Angkot</h4>
+                        <p data-lang="tip4-desc">Manfaatkan angkot (angkutan kota) dan berjalan kaki untuk menjelajahi kota. Selain hemat, Anda bisa merasakan atmosfer lokal.</p>
+                    </div>
+                    
+                    <div class="tip-card">
+                        <i class="fas fa-map-marked-alt"></i>
+                        <h4 data-lang="tip5-title">Rencana Rute Matang</h4>
+                        <p data-lang="tip5-desc">Rencanakan rute perjalanan dengan baik untuk menghindari bolak-balik yang menghabiskan waktu dan biaya transportasi.</p>
+                    </div>
+                    
+                    <div class="tip-card">
+                        <i class="fas fa-luggage-cart"></i>
+                        <h4 data-lang="tip6-title">Bawa Botol Minum</h4>
+                        <p data-lang="tip6-desc">Bawa botol minum sendiri dan isi ulang di hostel atau tempat umum untuk menghemat uang dan mengurangi sampah plastik.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Footer -->
+    <footer>
+        <section id="footer" class="footer-content">
+            <div class="footer-section">
+                <h3 data-lang="footer-about">Tentang Kami</h3>
+                <p data-lang="footer-about-desc">Kami adalah penyedia layanan itinerary perjalanan terpercaya yang telah membantu ribuan traveler merencanakan petualangan mereka sejak 2010.</p>
+                <div class="social-icons">
+                    <a href="https://web.facebook.com/vmt.co.id/?_rdc=1&_rdr"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/vmt.co.id/"><i class="fab fa-instagram"></i></a>
+                    <a href="https://id.linkedin.com/company/venus-media-teknologi"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h3 data-lang="footer-links">Link Cepat</h3>
+                <ul class="footer-links">
+                    <li><a href="Beranda.html" data-lang="footer-home">Beranda</a></li>
+                    <li><a href="#" data-lang="footer-packages">Paket Perjalanan</a></li>
+                    <li><a href="#" data-lang="footer-destinations">Destinasi Populer</a></li>
+                    <li><a href="#" data-lang="footer-blog">Blog Perjalanan</a></li>
+                    <li><a href="#" data-lang="footer-contact">Kontak Kami</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3 data-lang="footer-contact">Kontak</h3>
+                <p><i class="fas fa-map-marker-alt"></i> <span data-lang="footer-address">Jl. Sunan Ambu A73, Komplek Guruminda Soekarno Hatta - Bandung 40293</span></p>
+                <p><i class="fas fa-phone"></i>+62 813-2191-4117</p>
+                <p><i class="fas fa-envelope"></i> office@vmt.co.id</p>
+            </div>
+        </section>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 VMT Software <span data-lang="footer-rights">All rights reserved</span>.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Data untuk multi bahasa
+        const languageData = {
+            id: {
+                // Navigation
+                "home": "Beranda",
+                "about": "Tentang Kami",
+                "packages": "Paket Perjalanan",
+                "gallery": "Galeri",
+                "contact": "Kontak",
+                
+                // Hero Section
+                "hero-title": "Family Trip Jakarta-Bandung 3 Hari",
+                "hero-desc": "Jelajahi dunia kecil bersama orang-orang tercinta, nikmati momen tak terlupakan dengan itinerary yang dirancang khusus untuk keluarga.",
+                "budget-tag": "Budget: Rp 8.000.000",
+                "cta-button": "Lihat Itinerary",
+
+                // Section Title
+                "section-title": "Pengalaman Family Trip",
+                "section-desc": "Family trip dengan mobil pribadi, menikmati quality time dan menjelajahi Bandung dengan nyaman bersama keluarga.",
+
+                // Backpacker Info
+                "info-title": "Jakarta-Bandung Bersama Keluarga",
+                "info-p1": "Family trip dari Jakarta ke Bandung menawarkan momen berharga dengan kenyamanan dan kebersamaan. Dengan budget 8 juta untuk 3 hari, Anda bisa menjelajahi berbagai destinasi ramah keluarga di kota.",
+                "info-p2": "Perjalanan ini dirancang khusus untuk keluarga yang ingin menikmati waktu berkualitas bersama dengan kenyamanan dan keseruan. Dengan perencanaan yang tepat, Anda bisa menciptakan kenangan terbaik sekaligus mengatur budget dengan baik.",
+                "features-title": "Keunggulan Family Trip:",
+                "feature-1": "Transportasi mobil pribadi",
+                "feature-2": "Akomodasi ramah keluarga",
+                "feature-3": "Makan di restoran keluarga",
+                "feature-4": "Wisata keluarga yang terjangkau",
+                "feature-5": "Fleksibilitas tinggi",
+                
+                // Itinerary
+                    "itinerary-title": "3 Hari Family Trip Jakarta - Bandung",
+
+                    "day1-title": "Hari 1: Jakarta → Bandung & Citywalk",
+                    "day1-item1": "Berangkat dari Jakarta (bensin & tol)",
+                    "day1-item2": "Check-in di Hilton Bandung (2 malam)",
+                    "day1-item3": "Makan siang di Sudirman Street Food Court",
+                    "day1-item4": "Belanja & main anak di Paskal 23 Mall",
+                    "day1-item5": "Berenang & santai di hotel",
+                    "day1-item6": "Makan malam di Fresco Restaurant Hilton",
+
+                    "day2-title": "Hari 2: Bandung Zoo, Museum & Braga",
+                    "day2-item1": "Sarapan di hotel",
+                    "day2-item2": "Kunjungi Bandung Zoo",
+                    "day2-item3": "Makan siang di Café D’Pakar",
+                    "day2-item4": "Explore Museum Geologi",
+                    "day2-item5": "Jalan sore & foto-foto di Braga Street",
+                    "day2-item6": "Makan malam di Atmosphere Resort Café",
+
+                    "day3-title": "Hari 3: Museum & Oleh-oleh",
+                    "day3-item1": "Sarapan & check-out hotel",
+                    "day3-item2": "Kunjungi Museum Sri Baduga",
+                    "day3-item3": "Makan siang di Nara Park (ada playground anak)",
+                    "day3-item4": "Belanja oleh-oleh di Kartika Sari / Prima Rasa",
+                    "day3-item5": "Perjalanan pulang ke Jakarta (bensin & tol)",
+                    "day3-item6": "Tiba di Jakarta, trip selesai",
+
+
+                
+                
+                // Budget
+                "budget-title": "Rincian Budget Backpacker Jakarta-Bandung 3 Hari",
+                "budget-category": "Kategori",
+                "budget-detail": "Detail",
+                "budget-cost": "Biaya (IDR)",
+                "budget-accomodation": "Akomodasi",
+                "budget-accomodation-desc": "2 malam hotel",
+                "budget-transport": "Transportasi",
+                "budget-transport-desc": "Transportasi Pribadi (bensin & tol)",
+                "budget-activities": "Aktivitas & Entri",
+                "budget-activities-desc": "Tiket wisata dan atraksi",
+                "budget-food": "Makanan",
+                "budget-food-desc": "6 Kali Makan",
+                "budget-other": "Lain-lain",
+                "budget-other-desc": "Oleh-oleh, tak terduga, snack",
+                "total-budget": "Total Perkiraan Budget:",
+                
+                // Tips
+                "tips-title": "Tips Family Trip Jakarta-Bandung",
+                "tip1-title": "Persiapan Transportasi",
+                "tip1-desc": "Cek kondisi mobil sebelum berangkat dan isi bensin full dari Jakarta dan pastikan berangkat pagi.",
+                "tip2-title": "Pilih Lokasi Hotel Strategis",
+                "tip2-desc": "Pilih hotel yang family friendly dan usahakan mencari lokasi hotel yang strategis.",
+                "tip3-title": "Makanan",
+                "tip3-desc": "Cari restoran yang ada kids menu atau playground dan bawa bekal/snack ringan & minuman untuk anak",
+                "tip4-title": "Manajemen Waktu",
+                "tip4-desc": "Usahakan anak tidur malam yang cukup sebelum trip dan pakai pola 1 wisata berat + 1 santai tiap hari.",
+                "tip5-title": "Rencana Rute Matang",
+                "tip5-desc": "Rencanakan rute perjalanan dengan baik untuk menghindari bolak-balik yang menghabiskan waktu biaya transportasi.",
+                "tip6-title": "Perlengkapan Wajib",
+                "tip6-desc": "Bawa obat-obatan dasar, jaket/sweater, payung/jas hujan untuk berjaga-jaga jika ada hal yang tidak diinginkan.",
+            
+                
+                // Footer
+                "footer-about": "Tentang Kami",
+                "footer-about-desc": "VMT Software berdiri sejak tahun 2005, bergerak dalam bidang Konsultan IT, Khususnya pengembangan perangkat lunak (software).",
+                "footer-links": "Link Cepat",
+                "footer-home": "Beranda",
+                "footer-packages": "Paket Perjalanan",
+                "footer-destinations": "Destinasi Populer",
+                "footer-blog": "Blog Perjalanan",
+                "footer-contact": "Kontak Kami",
+                "footer-address": "Jl. Sunan Ambu A73, Komplek Guruminda Soekarno Hatta - Bandung 40293",
+                "footer-rights": "All rights reserved"
+            },
+            en: {
+                // Navigation
+                "home": "Home",
+                "about": "About Us",
+                "packages": "Travel Packages",
+                "gallery": "Gallery",
+                "contact": "Contact",
+                
+               // Hero Section
+                "hero-title": "Jakarta-Bandung Family Trip 3 Days",
+                "hero-desc": "Explore a little world with your loved ones, Enjoy unforgettable moments with an itinerary specially designed for families.",
+                "budget-tag": "Budget: Rp 8,000,000",
+                "cta-button": "View Itinerary",
+                
+                // Section Title
+                "section-title": "Family trip Experience",
+                "section-desc": "Family trip with private car, enjoying quality time and exploring the best of Bandung with comfort and togetherness.",
+                
+                // Backpacker Info
+                "info-title": "Jakarta-Bandung With Family",
+                "info-p1": "Family trip from Jakarta to Bandung offers memorable moments with comfort and togetherness. With a budget of 8 million for 3 days, you can explore exciting family-friendly destinations in the city.",
+                "info-p2": "This trip is specially designed for families who want to enjoy quality time together with comfort and fun. With proper planning, you can create the best memories while keeping the budget well-managed.",
+                "features-title": "Family Trips Advantages:",
+                "feature-1": "Private car transportation",
+                "feature-2": "Family-friendly accommodation",
+                "feature-3": "Dining at family restaurants",
+                "feature-4": "Affordable family attractions",
+                "feature-5": "High flexibility",   
+
+                
+                // Itinerary
+                "itinerary-title": "3-Day Family Trip Jakarta - Bandung",
+                "day1-title": "Day 1: Jakarta → Bandung & Citywalk",
+                "day1-item1": "Depart from Jakarta (fuel & toll)",
+                "day1-item2": "Check-in at Hilton Bandung (2 nights)",
+                "day1-item3": "Lunch at Sudirman Street Food Court",
+                "day1-item4": "Shopping & kids playground at Paskal 23 Mall",
+                "day1-item5": "Swimming & relaxing at hotel",
+                "day1-item6": "Dinner at Fresco Restaurant Hilton",
+
+                "day2-title": "Day 2: Bandung Zoo, Museum & Braga",
+                "day2-item1": "Breakfast at hotel",
+                "day2-item2": "Visit Bandung Zoo",
+                "day2-item3": "Lunch at Café D’Pakar",
+                "day2-item4": "Explore Museum Geologi",
+                "day2-item5": "Evening walk & photos at Braga Street",
+                "day2-item6": "Dinner at Atmosphere Resort Café",
+
+                "day3-title": "Day 3: Museum & Souvenirs",
+                "day3-item1": "Breakfast & hotel check-out",
+                "day3-item2": "Visit Museum Sri Baduga",
+                "day3-item3": "Lunch at Nara Park (kids playground available)",
+                "day3-item4": "Souvenir shopping at Kartika Sari / Prima Rasa",
+                "day3-item5": "Drive back to Jakarta (fuel & toll)",
+                "day3-item6": "Arrive in Jakarta, trip ends",
+                
+                // Budget
+                "budget-title": "Jakarta-Bandung 3 Days Backpacker Budget Details",
+                "budget-category": "Category",
+                "budget-detail": "Details",
+                "budget-cost": "Cost (IDR)",
+                "budget-accomodation": "Accommodation",
+                "budget-accomodation-desc": "2 nights hotel",
+                "budget-transport": "Transportation",
+                "budget-transport-desc": "Private Transportation (fuel & toll)",
+                "budget-activities": "Activities & Entrance",
+                "budget-activities-desc": "Tourist tickets and attractions",
+                "budget-food": "Food",
+                "budget-food-desc": "6 meals",
+                "budget-other": "Others",
+                "budget-other-desc": "Souvenirs, unexpected expenses, snacks",
+                "total-budget": "Total Estimated Budget:",
+                
+                // Tips
+                "tips-title": "Family Trip Tips Jakarta-Bandung",
+                "tip1-title": "Transport Preparation",
+                "tip1-desc": "Check the car condition, fill up the gas tank in Jakarta, and make sure to leave early in the morning.",
+                "tip2-title": "Choose Strategic Hotel Location",
+                "tip2-desc": "Choose a family-friendly hotel and try to find a strategic location.",
+                "tip3-title": "Food",
+                "tip3-desc": "Look for restaurants with kids’ menus or playgrounds, and bring snacks and drinks for the kids.",
+                "tip4-title": "Time Management",
+                "tip4-desc": "Ensure kids get enough sleep before the trip and balance each day with 1 heavy activity + 1 light one.",
+                "tip5-title": "Planned Routes",
+                "tip5-desc": "Plan the travel routes well to avoid backtracking that wastes time and transport costs.",
+                "tip6-title": "Essential Items",
+                "tip6-desc": "Bring basic medicine, jackets/sweaters, and umbrella/raincoats to be prepared for any situation.",
+
+            
+                
+                // Footer
+                "footer-about": "About Us",
+                "footer-about-desc": "VMT Software has been established since 2005, engaged in the field of IT Consultants, especially software development.",
+                "footer-links": "Quick Links",
+                "footer-home": "Home",
+                "footer-packages": "Travel Packages",
+                "footer-destinations": "Popular Destinations",
+                "footer-blog": "Travel Blog",
+                "footer-contact": "Contact Us",
+                "footer-address": "Jl. Sunan Ambu A73, Komplek Guruminda Soekarno Hatta - Bandung 40293",
+                "footer-rights": "All rights reserved"
+            }
+        };
+
+        // Fungsi untuk mengganti bahasa
+        function changeLanguage(lang) {
+            // Update tombol bahasa
+            document.querySelectorAll('.language-selector button').forEach(button => {
+                button.classList.remove('active');
+            });
+            document.getElementById(`${lang}-lang`).classList.add('active');
+            
+            // Update semua teks yang memiliki atribut data-lang
+            document.querySelectorAll('[data-lang]').forEach(element => {
+                const key = element.getAttribute('data-lang');
+                if (languageData[lang] && languageData[lang][key]) {
+                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                        element.placeholder = languageData[lang][key];
+                    } else {
+                        element.textContent = languageData[lang][key];
+                    }
+                }
+            });
+            
+            // Simpan preferensi bahasa
+            localStorage.setItem('preferred-language', lang);
+            
+            // Ubah atribut lang pada HTML
+            document.documentElement.lang = lang;
+            
+            console.log(`Language changed to: ${lang}`);
+        }
+
+        // Event listener untuk tombol bahasa
+        document.getElementById('id-lang').addEventListener('click', () => changeLanguage('id'));
+        document.getElementById('en-lang').addEventListener('click', () => changeLanguage('en'));
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Load bahasa yang dipilih sebelumnya atau default Indonesia
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedLanguage = localStorage.getItem('preferred-language') || 'id';
+            changeLanguage(savedLanguage);
+            
+            // Additional functionality for the CTA button
+            document.querySelector('.cta-button').addEventListener('click', function() {
+                document.querySelector('.itinerary-details').scrollIntoView({ 
+                    behavior: 'smooth' 
+                });
+            });
+        });
+    </script>
+</body>
+</html>

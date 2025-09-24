@@ -1,0 +1,1192 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Traveler Experience - Jakarta Bandung</title>
+    <link rel="icon" href="Untitled design (3).png" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+         html {
+        scroll-behavior: smooth;
+        }
+        
+        body {
+            overflow-x: hidden;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+        
+        /* Header dengan Parallax Effect */
+        .header {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url('tourist.jpg');
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* Navbar yang Menyambung ke Header */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            background-color: rgba(0, 0, 0, 0.6);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            transition: background-color 0.3s ease;
+        }
+        
+        .navbar.scrolled {
+            background-color: rgba(0, 0, 0, 0.9);
+            padding: 15px 5%;
+        }
+        
+        .logo {
+         align-items: center;
+         width: auto;
+         height: 40px;
+        display: flex
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin: 0 15px;
+        }
+        
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #4e89e8;
+        }
+        
+        .language-selector {
+            display: flex;
+            align-items: center;
+        }
+        
+        .language-selector button {
+            background: none;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            font-size: 14px;
+            margin-left: 10px;
+            opacity: 0.7;
+            transition: opacity 0.3s;
+            padding: 5px 10px;
+            border-radius: 3px;
+        }
+        
+        .language-selector button.active {
+            opacity: 1;
+            font-weight: 600;
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        .language-selector button:hover {
+            opacity: 1;
+        }
+        
+        /* Hero Section */
+        .hero {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #fff;
+            padding: 0 20px;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+        }
+        
+        .budget-tag {
+            background-color: #63636388;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        
+        .cta-button {
+            padding: 12px 30px;
+            background-color: #4e89e8;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        
+        .cta-button:hover {
+            background-color: #3a70c7;
+            transform: translateY(-3px);
+        }
+        
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70px;
+            height: 4px;
+            background-color: #4e89e8;
+        }
+        
+        .section-title p {
+            color: #777;
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* Traveler Content */
+        .traveler-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+        
+        .traveler-info {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .traveler-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        
+        .traveler-info p {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .traveler-features {
+            margin-bottom: 30px;
+        }
+        
+        .traveler-features li {
+            margin-bottom: 10px;
+            list-style-type: none;
+            display: flex;
+            align-items: center;
+        }
+        
+        .traveler-features li i {
+            color: #4e89e8;
+            margin-right: 10px;
+        }
+        
+        .traveler-image {
+            flex: 1;
+            min-width: 300px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .traveler-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        /* Itinerary Details */
+        .itinerary-details {
+            background-color: #fff;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-bottom: 60px;
+        }
+        
+        .itinerary-details h3 {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: #333;
+            text-align: center;
+        }
+        
+        .day {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .day:last-child {
+            border-bottom: none;
+        }
+        
+        .day h4 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #4e89e8;
+        }
+        
+        .day ul {
+            padding-left: 20px;
+        }
+        
+        .day li {
+            margin-bottom: 10px;
+            color: #555;
+        }
+        
+        .time-slot {
+            font-weight: 600;
+            color: #4e89e8;
+            margin-right: 5px;
+        }
+        
+        .cost {
+            font-style: italic;
+            color: #777;
+            margin-left: 10px;
+        }
+        
+        /* Budget Section */
+        .budget-section {
+            background-color: #f8f9fa;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .budget-section h3 {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: #333;
+            text-align: center;
+        }
+        
+        .budget-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+        }
+        
+        .budget-table th, .budget-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .budget-table th {
+            background-color: #4e89e8;
+            color: white;
+        }
+        
+        .budget-table tr:hover {
+            background-color: #f1f1f1;
+        }
+        
+        .total-budget {
+            text-align: right;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #4e89e8;
+        }
+        
+        /* Tips Section */
+        .tips-section {
+            margin-top: 60px;
+            background-color: #fff;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .tips-section h3 {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: #333;
+            text-align: center;
+        }
+        
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .tip-card {
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            padding: 25px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .tip-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .tip-card i {
+            font-size: 2.5rem;
+            color: #4e89e8;
+            margin-bottom: 15px;
+        }
+        
+        .tip-card h4 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .tip-card p {
+            color: #555;
+            line-height: 1.6;
+        }
+        
+        /* Highlights Section */
+        .highlights-section {
+            margin-top: 60px;
+        }
+        
+        .highlights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .highlight-card {
+            background-color: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .highlight-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .highlight-image {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .highlight-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .highlight-card:hover .highlight-image img {
+            transform: scale(1.1);
+        }
+        
+        .highlight-content {
+            padding: 20px;
+        }
+        
+        .highlight-content h4 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .highlight-content p {
+            color: #555;
+            line-height: 1.6;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            padding: 80px 0;
+            background-color: #4e89e8;
+            color: white;
+            margin-top: 60px;
+        }
+        
+        .cta-section h3 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .cta-section p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        .cta-button-secondary {
+            padding: 12px 30px;
+            background-color: white;
+            color: #4e89e8;
+            border: none;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        
+        .cta-button-secondary:hover {
+            background-color: #f1f1f1;
+            transform: translateY(-3px);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #222;
+            color: #fff;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            padding: 0 20px;
+        }
+        
+        .footer-section {
+            flex: 1;
+            min-width: 300px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-section h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background-color: #4e89e8;
+        }
+        
+        .footer-section p {
+            line-height: 1.6;
+            margin-bottom: 20px;
+            color: #bbb;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #bbb;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: #4e89e8;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-icons a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: #333;
+            border-radius: 50%;
+            color: #fff;
+            text-align: center;
+            line-height: 40px;
+            transition: background-color 0.3s;
+        }
+        
+        .social-icons a:hover {
+            background-color: #4e89e8;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #444;
+            margin-top: 30px;
+            color: #bbb;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 15px 5%;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .footer-section {
+                min-width: 100%;
+            }
+            
+            .itinerary-details, .budget-section, .tips-section {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header dengan Parallax -->
+    <header class="header">
+        <!-- Navbar -->
+        <nav class="navbar">
+            <div>
+            <a href="#beranda">
+             <img class="logo" src="logo_white_text.png" alt="Logo Perusahaan">
+            </a>
+            </div>
+            
+            <ul class="nav-links">
+                <li><a href="Beranda.html" data-lang="home">Beranda</a></li>
+                <li><a href="https://vmt.co.id/#" data-lang="about">Tentang Kami</a></li>
+                <li><a href="#footer" data-lang="contact">Kontak</a></li>
+            </ul>
+            
+            <div class="language-selector">
+                <button id="id-lang" class="active">ID</button>
+                <button id="en-lang">EN</button>
+            </div>
+        </nav>
+        
+        <!-- Hero Section -->
+        <section id="beranda" class="hero">
+            <h1 data-lang="hero-title">Jakarta-Bandung dengan Budget 3.5 Juta</h1>
+            <p data-lang="hero-desc">Nikmati perjalanan seru dari Jakarta ke Bandung dengan Kereta Whoosh selama 3 hari dengan budget terjangkau</p>
+            <div class="budget-tag">Budget: Rp 4.000.000</div>
+            <button class="cta-button" data-lang="cta-button">Lihat Itinerary</button>
+        </section>
+    </header>
+    
+    <!-- Main Content -->
+    <main>
+        <!-- Traveler Info Section -->
+        <section class="container">
+            <div class="section-title">
+                <h2 data-lang="section-title">Traveler Experience</h2>
+                <p data-lang="section-desc">Perjalanan hemat dengan kereta Whoosh, menikmati yang terbaik dari Jakarta dan Bandung dengan budget 3.5 juta</p>
+            </div>
+            
+            <div class="traveler-content">
+                <div class="traveler-info">
+                    <h3 data-lang="info-title">Jelajahi Dua Kota dengan Budget Terjangkau</h3>
+                    <p data-lang="info-p1">Perjalanan dari Jakarta ke Bandung dengan Kereta Whoosh menawarkan pengalaman modern dengan harga terjangkau. Dengan budget 3.5 juta untuk 3 hari, Anda bisa menikmati berbagai destinasi menarik di kedua kota.</p>
+                    <p data-lang="info-p2">Perjalanan ini dirancang khusus untuk traveler yang ingin menikmati pengalaman berkualitas tanpa harus mengeluarkan biaya besar. Dengan perencanaan yang matang, Anda bisa mendapatkan nilai terbaik untuk setiap rupiah yang dikeluarkan.</p>
+                    
+                    <h4 data-lang="features-title">Keuntungan Travel dengan Budget 3.5 Juta:</h4>
+                    <ul class="traveler-features">
+                        <li><i class="fas fa-check"></i> <span data-lang="feature-1">Tiket Kereta Whoosh kelas Ekonomi</span></li>
+                        <li><i class="fas fa-check"></i> <span data-lang="feature-2">Penginapan nyaman dengan harga terjangkau</span></li>
+                        <li><i class="fas fa-check"></i> <span data-lang="feature-3">Makan di tempat lokal yang autentik</span></li>
+                        <li><i class="fas fa-check"></i> <span data-lang="feature-4">Transportasi umum yang efisien</span></li>
+                        <li><i class="fas fa-check"></i> <span data-lang="feature-5">Destinasi wisata pilihan dengan harga masuk terjangkau</span></li>
+                    </ul>
+                </div>
+                
+                <div class="traveler-image">
+                    <img src="pexels-victorfreitas-1381415.jpg" alt="Traveler Journey">
+                </div>
+            </div>
+        </section>
+        
+        <!-- Itinerary Details -->
+        <section class="container">
+            <div class="itinerary-details">
+                <h3 data-lang="itinerary-title">Itinerary 3 Hari Jakarta - Bandung dengan Budget 3.5 Juta</h3>
+                
+                <div class="day">
+                    <h4 data-lang="day1-title">Hari 1: Eksplor Pusat Kota</h4>
+                    <ul>
+                        <li><span class="time-slot">07.00</span> - <span data-lang="day1-item1">Naik Whoosh Jakarta → Bandung</span> <span class="cost">(Rp 500.000/2 Person)</span></li>
+                        <li><span class="time-slot">07.50</span> - <span data-lang="day1-item2">Tiba Stasiun Padalarang/Tegalluar, lanjut ke hotel.</span> <span class="cost">(Rp 50.000/Gocar)</span></li>
+                        <li><span class="time-slot">09.00</span> - <span data-lang="day1-item3">Check-in hotel (ibis Styles Bandung Grand Central).</span> <span class="cost">(Rp 650.000/Night)</span></li>
+                        <li><span class="time-slot">09.30</span> - <span data-lang="day1-item4">Pergi ke Museum Geologi Bandung.</span> <span class="cost">(Rp 20.000/Gocar)</span></li>
+                        <li><span class="time-slot">09.40</span> - <span data-lang="day1-item5">Masuk ke Museum Geologi Bandung.</span> <span class="cost">(Rp 10.000/2 Person)</span></li>
+                        <li><span class="time-slot">11.30</span> - <span data-lang="day1-item6">Makan siang di Jl. Cibadak (kuliner legendaris).</span> <span class="cost">(Rp 100.000/2 Person)</span></li>
+                        <li><span class="time-slot">13.00</span> - <span data-lang="day1-item7">Gedung Sate & Taman Lansia, santai & foto.</span> <span class="cost">(Free)</span></li>
+                        <li><span class="time-slot">15.10</span> - <span data-lang="day1-item8">Pergi ke Babakan Siliwangi (Baksil).</span> <span class="cost">(Rp 25.000/Gocar)</span></li>
+                        <li><span class="time-slot">15.30</span> - <span data-lang="day1-item9">Babakan Siliwangi (Baksil), adem & gratis.</span> <span class="cost">(Free)</span></li>
+                        <li><span class="time-slot">17.15</span> - <span data-lang="day1-item10">Pergi Ke resto modern (Hummingbird Eatery & Space, Jl. Progo No.14).</span> <span class="cost">(Rp 25.000/Gocar)</span></li>
+                        <li><span class="time-slot">17.30</span> - <span data-lang="day1-item11">Dinner di resto modern (Hummingbird Eatery & Space, Jl. Progo No.14).</span> <span class="cost">(Rp 150.000/2 Person)</span></li>
+                        <li><span class="time-slot">19.00</span> - <span data-lang="day1-item12">Pergi Ke Braga.</span> <span class="cost">(Rp 25.000/Gocar)</span></li>
+                        <li><span class="time-slot">19.30</span> - <span data-lang="day1-item13">Malam di Jl. Braga, ngopi & dessert.</span> <span class="cost">(Rp 100.000/2 Person)</span></li>
+                        <li><span class="time-slot">22.00</span> - <span data-lang="day1-item14">Balik Hotel</span> <span class="cost">(Rp 20.000/Gocar)</span></li>
+                    </ul>
+                </div>
+                
+                <div class="day">
+                    <h4 data-lang="day2-title">Hari 2: Perjalanan ke Bandung</h4>
+                    <ul>
+                        <li><span class="time-slot">07.00</span> - <span data-lang="day2-item1">Sarapan di hotel</span> <span class="cost">(Free)</span></li>
+                        <li><span class="time-slot">07.30</span> - <span data-lang="day2-item2">Jalan Pagi di gasibu (jajan)</span> <span class="cost">(Rp 40.000)</span></li>
+                        <li><span class="time-slot">09.30</span> - <span data-lang="day2-item3">Pergi Ke Bandung Planning Galery</span> <span class="cost">(Rp 25.000/Gocar)</span>
+                        <li><span class="time-slot">11.00</span> - <span data-lang="day2-item4">Pergi ke restoran khas Sunda di Ampera</span> <span class="cost">(Rp 15.000)</span></li>    
+                        <li><span class="time-slot">11.30</span> - <span data-lang="day2-item5">Makan siang khas Sunda di Ampera</span> <span class="cost">(Rp 150.000)</span></li>
+                        <li><span class="time-slot">12.30</span> - <span data-lang="day2-item6">Pergi ke Bandung Creative Hub</span> <span class="cost">(Rp 20.000/Gocar)</span></li>
+                        <li><span class="time-slot">13.00</span> - <span data-lang="day2-item7">Masuk ke Bandung Creative Hub</span> <span class="cost">(Free)</span></li>
+                        <li><span class="time-slot">14.30</span> - <span data-lang="day2-item8">Pergi ke Teras Cikapundung</span> <span class="cost">(Rp 25.000/Gocar)</span></li>
+                        <li><span class="time-slot">15.30</span> - <span data-lang="day2-item9">Bersantai di Teras Cikapundung</span> <span class="cost">(Rp 30.000/2 Person)</span></li>
+                        <li><span class="time-slot">16.30</span> - <span data-lang="day2-item10">Pergi makan malam di Batagor Kingsley</span> <span class="cost">(Rp 20.000/Gocar)</span></li>
+                        <li><span class="time-slot">17.00</span> - <span data-lang="day2-item11">Makan malam di Batagor Kingsley</span> <span class="cost">(Rp 100.000/2 Person)</span></li>
+                        <li><span class="time-slot">19.00</span> - <span data-lang="day2-item12">Pergi ke Kiara Artha Park</span> <span class="cost">(Gocar : 35.000 Tiket : Rp 90.000/2 Person + Makan : 100.000/2 Person )</span></li>
+                        <li><span class="time-slot">21.30</span> - <span data-lang="day2-item13">Balik ke hotel, Istirahat</span> <span class="cost">(Rp 32.000/Gocar)</span></li>
+                    </ul>
+                </div>
+                
+                <div class="day">
+                    <h4 data-lang="day3-title">Hari 3: Alam Bandung & Kembali ke Jakarta</h4>
+                    <ul>
+                        <li><span class="time-slot">07.00</span> - <span data-lang="day3-item1">Sarapan & Check-Out hotel.</span> <span class="cost">(Free)</span></li>
+                        <li><span class="time-slot">08.30</span> - <span data-lang="day3-item2">Pergi ke Alun-Alun Bandung & Masjid raya</span> <span class="cost">(Rp 29.000/Gocar)</span></li>
+                        <li><span class="time-slot">09.30</span> - <span data-lang="day3-item3">Pergi Ke kartika Sari</span> <span class="cost">(Rp 20.000)</span></li>
+                        <li><span class="time-slot">10.00</span> - <span data-lang="day3-item4">Belanja oleh-oleh di Kartika sari</span> <span class="cost">(Rp 200.000)</span></li>
+                        <li><span class="time-slot">11.30</span> - <span data-lang="day3-item5">Pergi ke Atmosphere Café (Jl. Lengkong Besar No.97)</span> <span class="cost">(Rp 22.000)</span></li>
+                        <li><span class="time-slot">12.30</span> - <span data-lang="day3-item6">Makan siang terakhir di Atmosphere Café (Jl. Lengkong Besar No.97)</span> <span class="cost">(Rp 150.000/2 Person)</span></li>
+                        <li><span class="time-slot">13.30</span> - <span data-lang="day3-item7">Pergi Ke Stasiun Padalarang</span> <span class="cost">(Rp 70.000/Gocar)</span></li>
+                        <li><span class="time-slot">14.30</span> - <span data-lang="day3-item8">Naik Whoosh ke Stasiun Halim</span> <span class="cost">(Rp 500.000/2 Person)</span></li>
+                        <li><span class="time-slot">15.30</span> - <span data-lang="day3-item9">Tiba di Jakarta, Pulang Kerumah</span></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Budget Section -->
+        <section class="container">
+            <div class="budget-section">
+                <h3 data-lang="budget-title">Rincian Budget Traveler Jakarta-Bandung 3 Hari</h3>
+                
+                <table class="budget-table">
+                    <thead>
+                        <tr>
+                            <th data-lang="budget-category">Kategori</th>
+                            <th data-lang="budget-detail">Detail</th>
+                            <th data-lang="budget-cost">Biaya (IDR)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td data-lang="budget-accomodation">Akomodasi</td>
+                            <td data-lang="budget-accomodation-desc">2 malam hotel (1 Jakarta + 1 Bandung)</td>
+                            <td>Rp 1.300.000</td>
+                        </tr>
+                        <tr>
+                            <td data-lang="budget-transport">Transportasi</td>
+                            <td data-lang="budget-transport-desc">Whoosh PP, transportasi lokal</td>
+                            <td>Rp 1.478.000</td>
+                        </tr>
+                        <tr>
+                            <td data-lang="budget-activities">Aktivitas & Entri</td>
+                            <td data-lang="budget-activities-desc">Tiket wisata dan atraksi</td>
+                            <td>Rp 100.000</td>
+                        </tr>
+                        <tr>
+                            <td data-lang="budget-food">Makanan</td>
+                            <td data-lang="budget-food-desc">7 kali makan</td>
+                            <td>Rp 650.000</td>
+                        </tr>
+                        <tr>
+                            <td data-lang="budget-other">Lain-lain</td>
+                            <td data-lang="budget-other-desc">Oleh-oleh, tak terduga, snack</td>
+                            <td>Rp 470.000</td>
+                        </tr>
+                         <tr>
+                            <td data-lang="budget-person">Rincian</td>
+                            <td data-lang="budget-person-desc">Budget Per-orang</td>
+                            <td>Rp 2.000.000</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="total-budget">
+                    <span data-lang="total-budget">Total Perkiraan Budget:</span> Rp 3.998.000
+                </div>
+            </div>
+        </section>
+        
+        <!-- Tips Section -->
+        <section class="container">
+            <div class="tips-section">
+                <h3 data-lang="tips-title">Tips Traveler Hemat Jakarta-Bandung</h3>
+                
+                <div class="tips-grid">
+                    <div class="tip-card">
+                        <i class="fas fa-ticket-alt"></i>
+                        <h4 data-lang="tip1-title">Pesan Tiket Early Bird</h4>
+                        <p data-lang="tip1-desc">Beli tiket Whoosh 2-3 minggu sebelumnya untuk mendapatkan harga terbaik. Harga bisa lebih murah 20-30% dari harga normal.</p>
+                    </div>
+                    
+                    <div class="tip-card">
+                        <i class="fas fa-hotel"></i>
+                        <h4 data-lang="tip2-title">Pilih Penginapan Strategis</h4>
+                        <p data-lang="tip2-desc">Cari hotel yang dekat dengan stasiun/shuttle Whoosh untuk menghemat biaya transportasi lokal.</p>
+                    </div>
+                    
+                    <div class="tip-card">
+                        <i class="fas fa-utensils"></i>
+                        <h4 data-lang="tip3-title">Makan di Tempat Lokal</h4>
+                        <p data-lang="tip3-desc">Nikmati makanan di warung-warung lokal yang autentik. Selain lebih murah, Anda juga mendapatkan pengalaman kuliner yang otentik.</p>
+                    </div>
+                    
+                    <div class="tip-card">
+                        <i class="fas fa-walking"></i>
+                        <h4 data-lang="tip4-title">Jalan Kaki & Transportasi Umum</h4>
+                        <p data-lang="tip4-desc">Manfaatkan transportasi umum dan berjalan kaki untuk menjelajahi kota. Selain hemat, Anda bisa merasakan atmosfer lokal.</p>
+                    </div>
+                    
+                    <div class="tip-card">
+                        <i class="fas fa-map-marked-alt"></i>
+                        <h4 data-lang="tip5-title">Rencana Itinerary Matang</h4>
+                        <p data-lang="tip5-desc">Rencanakan rute perjalanan dengan baik untuk menghindari bolak-balik yang menghabiskan waktu dan biaya transportasi.</p>
+                    </div>
+                    
+                    <div class="tip-card">
+                        <i class="fas fa-gift"></i>
+                        <h4 data-lang="tip6-title">Beli Oleh-oleh di Pasar</h4>
+                        <p data-lang="tip6-desc">Untuk oleh-oleh, belilah di pasar tradisional atau pusat oleh-oleh yang harganya lebih terjangkau daripada di mall.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+    
+    <!-- Footer -->
+    <footer>
+        <section id="footer" class="footer-content">
+            <div class="footer-section">
+                <h3 data-lang="footer-about">Tentang Kami</h3>
+                <p data-lang="footer-about-desc">Kami adalah penyedia layanan itinerary perjalanan terpercaya yang telah membantu ribuan traveler merencanakan petualangan mereka sejak 2010.</p>
+                <div class="social-icons">
+                    <a href="https://web.facebook.com/vmt.co.id/?_rdc=1&_rdr"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/vmt.co.id/"><i class="fab fa-instagram"></i></a>
+                    <a href="https://id.linkedin.com/company/venus-media-teknologi"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h3 data-lang="footer-links">Link Cepat</h3>
+                <ul class="footer-links">
+                    <li><a href="Beranda.html" data-lang="footer-home">Beranda</a></li>
+                    <li><a href="#" data-lang="footer-packages">Paket Perjalanan</a></li>
+                    <li><a href="#" data-lang="footer-destinations">Destinasi Populer</a></li>
+                    <li><a href="#" data-lang="footer-blog">Blog Perjalanan</a></li>
+                    <li><a href="#" data-lang="footer-contact">Kontak Kami</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3 data-lang="footer-contact">Kontak</h3>
+                <p><i class="fas fa-map-marker-alt"></i> <span data-lang="footer-address">Jl. Perjalanan No. 123, Jakarta</span></p>
+                <p><i class="fas fa-phone"></i> +62 813-2191-4117</p>
+                <p><i class="fas fa-envelope"></i> office@vmt.co.id</p>
+            </div>
+        </section>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 VMT Software <span data-lang="footer-rights">All rights reserved</span>.</p>
+        </section>
+    </footer>
+
+    <script>
+        // Data untuk multi bahasa
+        const languageData = {
+            id: {
+                // Navigation
+                "home": "Beranda",
+                "about": "Tentang Kami",
+                "packages": "Paket Perjalanan",
+                "gallery": "Galeri",
+                "contact": "Kontak",
+                
+                // Hero Section
+                "hero-title": "Jakarta-Bandung dengan Budget 4 Juta",
+                "hero-desc": "Nikmati perjalanan seru dari Jakarta ke Bandung dengan Kereta Whoosh selama 3 hari dengan budget terjangkau",
+                "cta-button": "Lihat Itinerary",
+                
+                // Section Title
+                "section-title": "Pengalaman Traveler",
+                "section-desc": "Perjalanan hemat dengan kereta Whoosh, menikmati yang terbaik dari Jakarta dan Bandung dengan budget 4 juta",
+                
+                // Traveler Info
+                "info-title": "Jelajahi Dua Kota dengan Budget Terjangkau",
+                "info-p1": "Perjalanan dari Jakarta ke Bandung dengan Kereta Whoosh menawarkan pengalaman modern dengan harga terjangkau. Dengan budget 4 juta untuk 3 hari, Anda bisa menikmati berbagai destinasi menarik di Bandung.",
+                "info-p2": "Perjalanan ini dirancang khusus untuk traveler yang ingin menikmati pengalaman berkualitas tanpa harus mengeluarkan biaya besar. Dengan perencanaan yang matang, Anda bisa mendapatkan nilai terbaik untuk setiap rupiah yang dikeluarkan.",
+                "features-title": "Keuntungan Traveler:",
+                "feature-1": "Tiket Kereta Whoosh kelas Ekonomi",
+                "feature-2": "Penginapan nyaman dengan harga terjangkau",
+                "feature-3": "Makan di tempat lokal yang autentik",
+                "feature-4": "Transportasi umum yang efisien",
+                "feature-5": "Destinasi wisata pilihan dengan harga masuk terjangkau",
+                
+                // Itinerary
+                "itinerary-title": "Itinerary 3 Hari Jakarta - Bandung dengan Budget 3.5 Juta",
+                "day1-title": "Hari 1: Eksplor Pusat Kota",
+                "day1-item1": "Naik Whoosh Jakarta → Bandung.",
+                "day1-item2": "Tiba Stasiun Padalarang/Tegalluar, lanjut ke hotel.",
+                "day1-item3": "Check-in hotel (ibis Styles Bandung Grand Central)",
+                "day1-item4": "Pergi ke Museum Geologi Bandung.",
+                "day1-item5": "Masuk ke Museum Geologi Bandung.",
+                "day1-item6": "Makan siang di Jl. Cibadak (kuliner legendaris).",
+                "day1-item7": "Gedung Sate & Taman Lansia, santai & foto.",
+                "day1-item8": "Pergi ke Babakan Siliwangi (Baksil)",
+                "day1-item9": "Babakan Siliwangi (Baksil), adem & gratis.",
+                "day1-item10": "Pergi Ke resto modern (Hummingbird Eatery & Space, Jl. Progo No.14).",
+                "day1-item11": "Dinner di resto modern (Hummingbird Eatery & Space, Jl. Progo No.14).",
+                "day1-item12": "Pergi Ke Braga.",
+                "day1-item13": "Malam di Jl. Braga, ngopi & dessert.",
+                "day1-item14": "Balik Hotel",
+
+                "day2-title": "Hari 2: Seni & Kreatif Bandung",
+                "day2-item1": "Sarapan di hotel",
+                "day2-item2": "Jalan Pagi di gasibu (jajan)",
+                "day2-item3": "Pergi Ke Bandung Planning Galery",
+                "day2-item4": "Pergi ke restoran khas Sunda di Ampera",
+                "day2-item5": "Makan siang khas Sunda di Ampera",
+                "day2-item6": "Pergi ke Bandung Creative Hub",
+                "day2-item7": "Masuk ke Bandung Creative Hub",
+                "day2-item8": "Pergi ke Teras Cikapundung",
+                "day2-item9": "Bersantai di Teras Cikapundung",
+                "day2-item10": "Pergi makan malam di Batagor Kingsley",
+                "day2-item11": "Makan malam di Batagor Kingsley",
+                "day2-item12": "Pergi ke Kiara Artha Park",
+                "day2-item13": "Balik ke hotel, Istirahat",
+                
+                "day3-title": "Hari 3: Santai & Pulang",
+                "day3-item1": "Sarapan & Check-Out hotel.",
+                "day3-item2": "Pergi ke Alun-Alun Bandung & Masjid raya.",
+                "day3-item3": "Pergi Ke kartika Sari.",
+                "day3-item4": "Belanja oleh-oleh di Kartika sari.",
+                "day3-item5": "Pergi ke Atmosphere Café (Jl. Lengkong Besar No.97).",
+                "day3-item6": "Makan siang di Atmosphere Café.",
+                "day3-item7": "Pergi Ke Stasiun Tegalluar.",
+                "day3-item8": "Naik Whoosh ke Stasiun Halim.",
+                "day3-item9": "Tiba di Jakarta, Pulang Kerumah.",
+                
+                // Budget
+                "budget-title": "Rincian Budget Traveler Jakarta-Bandung 3 Hari",
+                "budget-category": "Kategori",
+                "budget-detail": "Detail",
+                "budget-cost": "Biaya (IDR)",
+                "budget-accomodation": "Akomodasi",
+                "budget-accomodation-desc": "2 malam hotel (1 Jakarta + 1 Bandung)",
+                "budget-transport": "Transportasi",
+                "budget-transport-desc": "Whoosh PP, transportasi lokal",
+                "budget-activities": "Aktivitas & Entri",
+                "budget-activities-desc": "Tiket wisata dan atraksi",
+                "budget-food": "Makanan",
+                "budget-food-desc": "7 kali makan",
+                "budget-other": "Lain-lain",
+                "budget-other-desc": "Oleh-oleh, tak terduga, snack",
+                "budget-person": "Rincian",
+                "budget-person-desc": "Budget Per-Orang",
+                "total-budget": "Total Perkiraan Budget:",
+                
+                // Tips
+                "tips-title": "Tips Traveler Hemat Jakarta-Bandung",
+                "tip1-title": "Pesan Tiket Early Bird",
+                "tip1-desc": "Beli tiket Whoosh 2-3 minggu sebelumnya untuk mendapatkan harga terbaik. Harga bisa lebih murah 20-30% dari harga normal.",
+                "tip2-title": "Pilih Penginapan Strategis",
+                "tip2-desc": "Cari hotel yang dekat dengan stasiun/shuttle Whoosh untuk menghemat biaya transportasi lokal.",
+                "tip3-title": "Makan di Tempat Lokal",
+                "tip3-desc": "Nikmati makanan di warung-warung lokal yang autentik. Selain lebih murah, Anda juga mendapatkan pengalaman kuliner yang otentik.",
+                "tip4-title": "Jalan Kaki & Transportasi Umum",
+                "tip4-desc": "Manfaatkan transportasi umum dan berjalan kaki untuk menjelajahi kota. Selain hemat, Anda bisa merasakan atmosfer lokal.",
+                "tip5-title": "Rencana Itinerary Matang",
+                "tip5-desc": "Rencanakan rute perjalanan dengan baik untuk menghindari bolak-balik yang menghabiskan waktu dan biaya transportasi.",
+                "tip6-title": "Beli Oleh-oleh di Pasar",
+                "tip6-desc": "Untuk oleh-oleh, belilah di pasar tradisional atau pusat oleh-oleh yang harganya lebih terjangkau daripada di mall.",
+                
+                
+                // Footer
+                "footer-about": "Tentang Kami",
+                "footer-about-desc": "VMT Software berdiri sejak tahun 2005, bergerak dalam bidang Konsultan IT, Khususnya pengembangan perangkat lunak (software).",
+                "footer-links": "Link Cepat",
+                "footer-home": "Beranda",
+                "footer-packages": "Paket Perjalanan",
+                "footer-destinations": "Destinasi Populer",
+                "footer-blog": "Blog Perjalanan",
+                "footer-contact": "Kontak Kami",
+                "footer-address": "Jl. Sunan Ambu A73, Komplek Guruminda Soekarno Hatta - Bandung 40293",
+                "footer-rights": "All rights reserved"
+            },
+            en: {
+                // Navigation
+                "home": "Home",
+                "about": "About Us",
+                "packages": "Travel Packages",
+                "gallery": "Gallery",
+                "contact": "Contact",
+                
+                // Hero Section
+                "hero-title": "Jakarta-Bandung with 4 Million Budget",
+                "hero-desc": "Enjoy an exciting trip from Jakarta to Bandung with Whoosh Train for 3 days with an affordable budget",
+                "cta-button": "View Itinerary",
+                
+                // Section Title
+                "section-title": "Traveler Experience",
+                "section-desc": "Budget trip with Whoosh train, enjoying the best of Jakarta and Bandung with a 4 million budget",
+                
+                // Traveler Info
+                "info-title": "Explore Two Cities with Affordable Budget",
+                "info-p1": "Traveling from Jakarta to Bandung with Whoosh Train offers a modern experience at an affordable price. With a budget of 4 million for 3 days, you can enjoy various interesting destinations in Bandung.",
+                "info-p2": "This trip is specifically designed for travelers who want to enjoy a quality experience without having to spend a lot of money. With careful planning, you can get the best value for every rupiah spent.",
+                "features-title": "Traveler Advantages:",
+                "feature-1": "Whoosh Train Economy class ticket",
+                "feature-2": "Comfortable accommodation at affordable prices",
+                "feature-3": "Eating at authentic local places",
+                "feature-4": "Efficient public transportation",
+                "feature-5": "Selected tourist destinations with affordable entrance fees",
+                
+                // Itinerary
+                "itinerary-title": "3-Day Itinerary Jakarta - Bandung with 4M IDR Budget",
+                "day1-title": "Day 1: Explore Bandung City Center",
+                "day1-item1": "Take the Whoosh train from Jakarta to Bandung.",
+                "day1-item2": "Arrive at Padalarang/Tegalluar Station, continue to the hotel.",
+                "day1-item3": "Check-in at hotel (ibis Styles Bandung Grand Central).",
+                "day1-item4": "Head to the Bandung Geological Museum.",
+                "day1-item5": "Explore inside the Geological Museum.",
+                "day1-item6": "Lunch at Jl. Cibadak (legendary local street food).",
+                "day1-item7": "Visit Gedung Sate & Taman Lansia, relax and take photos.",
+                "day1-item8": "Go to Babakan Siliwangi (Baksil).",
+                "day1-item9": "Enjoy the fresh air at Babakan Siliwangi (Baksil).",
+                "day1-item10": "Head to a modern restaurant (Hummingbird Eatery & Space, Jl. Progo No.14).",
+                "day1-item11": "Dinner at Hummingbird Eatery & Space (Jl. Progo No.14).",
+                "day1-item12": "Go to Braga Street.",
+                "day1-item13": "Evening at Braga Street, enjoy coffee & dessert.",
+                "day1-item14": "Return to the hotel.",
+                
+                "day2-title": "Day 2: Bandung Art & Creativity",
+                "day2-item1": "Breakfast at the hotel.",
+                "day2-item2": "Morning walk at Gasibu (street snacks).",
+                "day2-item3": "Visit the Bandung Planning Gallery.",
+                "day2-item4": "Head to a Sundanese restaurant at Ampera.",
+                "day2-item5": "Enjoy Sundanese lunch at Ampera.",
+                "day2-item6": "Go to Bandung Creative Hub.",
+                "day2-item7": "Explore Bandung Creative Hub.",
+                "day2-item8": "Head to Teras Cikapundung.",
+                "day2-item9": "Relax at Teras Cikapundung.",
+                "day2-item10": "Go for dinner at Batagor Kingsley.",
+                "day2-item11": "Dinner at Batagor Kingsley.",
+                "day2-item12": "Visit Kiara Artha Park.",
+                "day2-item13": "Return to the hotel and rest.",
+                
+                "day3-title": "Day 3: Relax & Return",
+                "day3-item1": "Breakfast & check-out from the hotel.",
+                "day3-item2": "Visit Alun-Alun Bandung & Masjid Raya.",
+                "day3-item3": "Head to Kartika Sari.",
+                "day3-item4": "Shop for souvenirs at Kartika Sari.",
+                "day3-item5": "Go to Atmosphere Café (Jl. Lengkong Besar No.97).",
+                "day3-item6": "Lunch at Atmosphere Café.",
+                "day3-item7": "Head to Tegalluar Station.",
+                "day3-item8": "Take the Whoosh train back to Halim Station.",
+                "day3-item9": "Arrive in Jakarta and return home.",
+                
+                // Budget
+                "budget-title": "Jakarta-Bandung 3 Days Traveler Budget Details",
+                "budget-category": "Category",
+                "budget-detail": "Details",
+                "budget-cost": "Cost (IDR)",
+                "budget-accomodation": "Accommodation",
+                "budget-accomodation-desc": "2 nights hotel",
+                "budget-transport": "Transportation",
+                "budget-transport-desc": "Whoosh round trip, local transportation",
+                "budget-activities": "Activities & Entrance",
+                "budget-activities-desc": "Tourist tickets and attractions",
+                "budget-food": "Food",
+                "budget-food-desc": "7 meals",
+                "budget-other": "Others",
+                "budget-other-desc": "Souvenirs, unexpected expenses, snacks",
+                "budget-person": "Details",
+                "budget-person-desc": "Budget Per Person",
+                "total-budget": "Total Estimated Budget:",
+                
+                // Tips
+                "tips-title": "Budget Traveler Tips Jakarta-Bandung",
+                "tip1-title": "Book Early Bird Tickets",
+                "tip1-desc": "Buy Whoosh tickets 2-3 weeks in advance to get the best price. Prices can be 20-30% cheaper than normal prices.",
+                "tip2-title": "Choose Strategic Accommodation",
+                "tip2-desc": "Look for hotels close to Whoosh station/shuttle to save on local transportation costs.",
+                "tip3-title": "Eat at Local Places",
+                "tip3-desc": "Enjoy food at authentic local stalls. Besides being cheaper, you also get an authentic culinary experience.",
+                "tip4-title": "Walking & Public Transportation",
+                "tip4-desc": "Use public transportation and walk to explore the city. Besides being economical, you can feel the local atmosphere.",
+                "tip5-title": "Solid Itinerary Plan",
+                "tip5-desc": "Plan your travel route well to avoid back and forth that wastes time and transportation costs.",
+                "tip6-title": "Buy Souvenirs at Traditional Markets",
+                "tip6-desc": "For souvenirs, buy at traditional markets or souvenir centers that are more affordable than malls.",
+            
+                
+                // Footer
+                "footer-about": "About Us",
+                "footer-about-desc": "VMT Software has been established since 2005, engaged in the field of IT Consultants, especially software development.",
+                "footer-links": "Quick Links",
+                "footer-home": "Home",
+                "footer-packages": "Travel Packages",
+                "footer-destinations": "Popular Destinations",
+                "footer-blog": "Travel Blog",
+                "footer-contact": "Contact Us",
+                "footer-address": "Jl. Sunan Ambu A73, Komplek Guruminda Soekarno Hatta - Bandung 40293",
+                "footer-rights": "All rights reserved"
+            }
+        };
+
+        // Fungsi untuk mengganti bahasa
+        function changeLanguage(lang) {
+            // Update tombol bahasa
+            document.querySelectorAll('.language-selector button').forEach(button => {
+                button.classList.remove('active');
+            });
+            document.getElementById(`${lang}-lang`).classList.add('active');
+            
+            // Update semua teks yang memiliki atribut data-lang
+            document.querySelectorAll('[data-lang]').forEach(element => {
+                const key = element.getAttribute('data-lang');
+                if (languageData[lang][key]) {
+                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                        element.placeholder = languageData[lang][key];
+                    } else {
+                        element.textContent = languageData[lang][key];
+                    }
+                }
+            });
+            
+            // Simpan preferensi bahasa
+            localStorage.setItem('preferred-language', lang);
+            
+            // Ubah atribut lang pada HTML
+            document.documentElement.lang = lang;
+        }
+
+        // Event listener untuk tombol bahasa
+        document.getElementById('id-lang').addEventListener('click', () => changeLanguage('id'));
+        document.getElementById('en-lang').addEventListener('click', () => changeLanguage('en'));
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Load bahasa yang dipilih sebelumnya atau default Indonesia
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedLanguage = localStorage.getItem('preferred-language') || 'id';
+            changeLanguage(savedLanguage);
+            
+            // Additional functionality for the CTA button
+            document.querySelector('.cta-button').addEventListener('click', function() {
+                document.querySelector('.itinerary-details').scrollIntoView({ 
+                    behavior: 'smooth' 
+                });
+            });
+        });
+    </script>
+</body>
+</html>
